@@ -1,0 +1,154 @@
+# Format of this document:
+# Each top-level key is an item that is referneced by any section schedule's "content" array
+# Each key has a "name" attribute (rendered on the calendar), a "page" attribute (which contains a link to the lesson) and an optional "type" attribute, which is a key into the _data/config.yml "types" dictionary.
+mod1:
+  name: Orientation & Requirements
+  page: 
+mod2:
+  name: From Requirements to Tests
+  page: 
+mod2a:
+  name: Requirements Analysis
+  page: 
+mod2b:
+  name: Test-Driven Development
+  page: 
+mod3:
+  name: When Have I Written Enough Tests?
+  page: 
+mod4:
+  name: Design Patterns for Web Applications
+  page: 
+mod5:
+  name: React Part 1 (Introduction)
+  page: 
+mod6:
+  name: React Part 2 (Hooks)
+  page: 
+mod7:
+  name: Software Processes & Agile
+  page: 
+mod8:
+  name: Concurrency Patterns
+  page: 
+mod9:
+  name: Writing Maintainable Code
+  page: 
+mod10:
+  name: Tests with Larger Scope
+  page: 
+mod11:
+  name: Application Level Patterns
+  page: 
+mod12:
+  name: Continuous Development
+  page: 
+mod13:
+  name: Principles for Cloud Deployment
+  page: 
+mod14:
+  name: Security
+  page: 
+mod15:
+  name: Ethics and Equity in SE
+  page: 
+ai:
+  name: Coding with AI  
+  page: 
+advanced:
+  name: Advanced Topics in SE
+opensource:
+  name: Open Source
+  page: 
+dependency:
+  name: Dependency Management
+  page: 
+midtermReview:
+  name: Midterm Review
+midtermExam:
+  name: Midterm Exam
+midtermRetro:
+  name: Midterm Retrospective
+WOPDiscussPlan:
+  name: Work on project (Discuss Preliminary Project Plan)
+WOP:
+  name: Work on project
+WOPMiniDemo:
+  name: Work on Project / Mini-Demo
+WOPOptional:
+  name: Work on Project (Optional)
+teamMeetings:
+  name: Team Meetings
+oteamMeetings:
+  name: Team Meetings (Optional)
+teamMeetingsPlan:
+  name: Team Meetings (Discuss project plan/revisions)
+extendedOfficeHours:
+  name: Work Session / Extended Office Hours
+present:
+  name: Presentations
+pitch:
+  name: Elevator Pitch
+posters:
+  name: Poster Presentations
+ip1:
+  name: Individual Project 1
+  type: deadline
+  page: 
+ip2:
+  name: Individual Project 2 
+  type: deadline
+  page: 
+ip3:
+  name: Individual Project 3
+  type: deadline
+  page: 
+tp1:
+  name: Project Formation
+  type: deadline
+tp2:
+  name: Preliminary Project Plan
+  type: deadline
+  page: 
+tp3:
+  name: Revised Project Plan
+  type: deadline
+  page: 
+tp4:
+  name: Project Final Deliverable
+  type: deadline
+  page: 
+tp5:
+  name: Individual Reflection
+  type: deadline
+  page: 
+memorialsday:
+  name: Memorial Day (No class)
+  type: holiday
+veteransday:
+  name: Veteran's Day (No class)
+  type: holiday
+thanksgiving:
+  name: Thanksgiving Break (No class)
+  type: holiday
+indigenous:
+  name: Indigenous Peoples Day (No class)
+  type: holiday
+mlkday:
+  name: MLK Day (No class)
+  type: holiday
+presidentsday:
+  name: President's Day (No class)
+  type: holiday
+springbreak:
+  name: Spring Break (No class)
+  type: holiday
+patriotsday:
+  name: Patriots Day (No class)
+  type: holiday
+noClass:
+  name: No Class
+readingDay:
+  name: Reading Day / No class
+finalsWeek:
+  name: Final Exam Week / No class
