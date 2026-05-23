@@ -87,6 +87,8 @@ extendedOfficeHours:
   name: Work Session / Extended Office Hours
 present:
   name: Presentations
+presentDemo:
+  name: Demos / Presentations
 pitch:
   name: Elevator Pitch
 posters:
