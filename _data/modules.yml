@@ -86,7 +86,7 @@ teamMeetingsPlan:
 extendedOfficeHours:
   name: Work Session / Extended Office Hours
 present:
-  name: Presentations
+  name: Demos / Presentations
 pitch:
   name: Elevator Pitch
 posters:
