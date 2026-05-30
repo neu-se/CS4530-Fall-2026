@@ -38,7 +38,7 @@ mod10:
   name: Tests with Larger Scope
   page: 
 mod11:
-  name: Application Level Patterns
+  name: Interaction & Application Level Patterns
   page: 
 mod12:
   name: Continuous Development
@@ -86,6 +86,8 @@ teamMeetingsPlan:
 extendedOfficeHours:
   name: Work Session / Extended Office Hours
 present:
+  name: Presentations
+presentDemo:
   name: Demos / Presentations
 pitch:
   name: Elevator Pitch
