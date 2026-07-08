@@ -40,14 +40,20 @@ mod10:
 mod11:
   name: Interaction & Application Level Patterns
   page: 
+mod11a:
+  name: Interaction Level Patterns
+  page: 
+mod11b:
+  name: Application Level Patterns
+  page: 
 mod12:
   name: Continuous Development
   page: 
 mod13:
-  name: Principles for Cloud Deployment
+  name: Security
   page: 
 mod14:
-  name: Security
+  name: Principles for Cloud Deployment
   page: 
 mod15:
   name: Ethics and Equity in SE
@@ -131,7 +137,7 @@ veteransday:
   name: Veteran's Day (No class)
   type: holiday
 thanksgiving:
-  name: Thanksgiving Break (No class)
+  name: Thanksgiving/ Fall Break (No class)
   type: holiday
 indigenous:
   name: Indigenous Peoples Day (No class)
