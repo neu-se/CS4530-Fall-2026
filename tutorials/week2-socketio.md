@@ -3,7 +3,7 @@ layout: page
 title: Socket.IO Tutorial
 permalink: /tutorials/week2-socketio-basics
 parent: Tutorials
-nav_order: 5
+nav_order: 6
 ---
 
 This tutorial covers the basic concepts of Socket.IO. By the end, you'll understand when sockets are useful, and how to emit and listen for events for real‑time updates.

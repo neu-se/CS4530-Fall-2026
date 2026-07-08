@@ -3,7 +3,7 @@ layout: page
 title: Simple Storage with Keyv
 permalink: /tutorials/week2-keyv
 parent: Tutorials
-nav_order: 8
+nav_order: 5
 ---
 
 # Incredibly Simple Storage with Keyv
