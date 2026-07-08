@@ -33,7 +33,7 @@ If you are new to Git, you may want to work on "Learning Basics of Git" assignme
 
 ### 1.1. Prerequisites
 
-You'll need to start by [setting up your development environment]({{site.baseurl}}{% link tutorials/week1-getting-started.md %}), including node.js and npm.
+You'll need to start by setting up your development environment, including node.js and npm. See our tutorials page.
 
 Next, make sure you have used Git to clone the starter code. This code is divided into 3 main directories: client, server, and shared. These are connected in a single [NPM workspace](https://docs.npmjs.com/cli/v7/using-npm/workspaces), but you shouldn’t have to worry much about what that means.
 
