@@ -15,7 +15,7 @@ mod2b:
   page: 
 mod3:
   name: When Have I Written Enough Tests?
-  page: 
+  page: /modules/3-test-adequacy
 mod4:
   name: Design Patterns for Web Applications
   page: 
