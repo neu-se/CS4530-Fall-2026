@@ -27,7 +27,7 @@ mod6:
   page: 
 mod7:
   name: Software Processes & Agile
-  page: 
+  page: /modules/7-software-process
 mod8:
   name: Concurrency Patterns
   page: 
