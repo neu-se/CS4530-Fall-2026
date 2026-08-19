@@ -4,7 +4,7 @@ title: Mutation Testing with Stryker
 nav_exclude: true
 ---
 
-## Activity 3.2: Mutation Testing with Stryker
+## Activity 3: Mutation Testing with Stryker
 
 This activity is intended to supplement the CS4530 lecture on mutation testing development. You will need to have already completed the development environment setup for the class.
 
