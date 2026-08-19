@@ -14,7 +14,7 @@ mod2b:
   name: Test-Driven Development
   page: 
 mod3:
-  name: When Have I Written Enough Tests?
+  name: Test Adequacy
   page: /modules/3-test-adequacy
 mod4:
   name: Design Patterns for Web Applications
