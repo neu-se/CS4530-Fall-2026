@@ -8,3 +8,5 @@ node_modules/
 vendor/
 *~
 .DS_Store
+.ruby-version
+Gemfile.lock
