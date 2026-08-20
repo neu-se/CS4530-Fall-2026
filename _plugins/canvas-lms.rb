@@ -220,7 +220,7 @@ class CanvasSyncer
     content = '<div class="fs-1 text-right fw-300">This content was last updated at:' + lastModifiedAt + '; you may view it with native formatting <a target="_blank" href="' + permalink+ '">on the course website</a></div>' + content
     content = content.gsub(/<a href="\//, '<a target="_blank" href="' + baseURL + '/')
 
-    existing_home = home.body
+    existing_home = home[:body]
     existing_home = existing_home.gsub(/<link rel="stylesheet" href="https:\/\/instructure-uploads.s3.amazonaws.com\/([^"]+)">/, '')
     existing_home = existing_home.gsub(/<script src="https:\/\/instructure-uploads.s3.amazonaws.com\/([^"]+)"><\/script>/, '')
     if(existing_home != content)
