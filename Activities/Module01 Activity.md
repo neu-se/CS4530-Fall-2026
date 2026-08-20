@@ -9,7 +9,7 @@ nav_exclude: true
 
 This activity will give you practice with using user stories to solicit and document user requirements, refining them into conditions of satisfaction, and assigning priorities.
 
-Before you start, be sure to review the tutorial "User Stories and Conditions of Satisfaction" on the course website.
+Before you start, be sure to review the lecture slides posted on the course website.
 
 ### Scenario
 
@@ -38,7 +38,7 @@ Please submit a total of:
 * 3 user stories
 * 9-12 conditions of satisfaction with priorities
 
-When you are done, submit your work as required by your instructor (check the Canvas asssignment for details, if assigned). This may vary from section to section.
+When you are done, submit your work as required by your instructor (i.e., check the Canvas asssignment for details) if assigned. 
 
 ### Grading Criteria: 10pts
 
