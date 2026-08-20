@@ -304,6 +304,7 @@ DEPENDENCIES
   just-the-docs
   kramdown-parser-gfm
   lms-api
+  rubyzip
   webrick (~> 1.7)
 
 BUNDLED WITH
