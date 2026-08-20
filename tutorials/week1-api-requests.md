@@ -182,4 +182,4 @@ It also allows you to:
 - Send JSON request bodies
 - View formatted responses and status codes
 
-Here is a brief [tutorial on postman](https://neu-se.github.io/CS4530-Spring-2026/tutorials/week1-apirequests-postman) 
+Here is a brief [tutorial on postman](https://neu-se.github.io/CS4530-Spring-2026/tutorials/week1-apirequests-postman).
