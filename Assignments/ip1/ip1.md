@@ -5,7 +5,7 @@ permalink: /assignments/ip1
 parent: Assignments
 nav_order: 1
 due_date: "Wednesday Sep 23, 2026 5:00pm (ET)"
-submission_notes: Submit Code through Github Classroom, Submit Link and Written Work on Gradescope
+submission_notes: Submit Code through Pawtograder
 ---
 
 The individual and group projects for this course place you in the role of the most recent hire at GameNite, an interactive application for people who like playing, or commenting on, multiplayer strategy games. It recently received a large investment thanks to its elevator pitch, “what if we had a version of Twitch, but for correspondence chess?”
@@ -25,17 +25,25 @@ The objectives of this assignment are to:
 
 ## 1. Getting Started
 
-If you were registered for the class before Wednesday, Sep 9, you should have an email from a TA with an invitation to our organization. Be sure to check your spam/junk folder. The first step is to accept the invitation. If you cannot find the invitation, if you registered for the class late, or have any other issue that keeps you from getting started, please create a Piazza post to contact us and we will try to help.
+Pawtograder is our course platform for individual projects and {final} group project. Before you can work on these, you need to connect your accounts.
 
-After that, accept our GitHub Classroom Invitation for this assignment. It will create a Github repository for you which will include the starter code for this assignment.
+For detailed instructions with screenshots, see the [Pawtograder Student Guide](https://docs.pawtograder.com/students/intro).
 
-If you are new to Git, you may want to work on "Learning Basics of Git" assignment first! We expect all students to be able to use add/commit/push for their work.
+1. Log in to Pawtograder at [khoury.pawtograder.com](https://pawtograder.khoury.northeastern.edu) using your Northeastern credentials (click "Continue with Microsoft")
+2. Connect your GitHub account — when prompted, click "Sign in with GitHub" and authorize Pawtograder
+3. Accept the organization invitation — click "Open GitHub Organization Invitation" and accept using your GitHub account
+
+    💡 Already have a GitHub account? Use your existing account! This keeps all your coursework visible on your profile if you choose to make repositories public later.
+
+    🔄 Already have Pawtograder linked to GitHub from CS 2100 or CS3100? You'll still need to complete the steps above to enroll in the CS4300 GitHub organization in Pawtograder (skipping step 2).
+
+    ⚠️ Course not showing up? Enrollments sync automatically every hour. If you just registered, wait an hour and try again. If it still doesn't appear, contact your instructor.
 
 ### 1.1. Prerequisites
 
 You'll need to start by [setting up your development environment]({{site.baseurl}}{% link tutorials/week1-getting-started.md %}), including node.js and npm.
 
-Next, make sure you have used Git to clone the starter code. This code is divided into 3 main directories: client, server, and shared. These are connected in a single [NPM workspace](https://docs.npmjs.com/cli/v7/using-npm/workspaces), but you shouldn’t have to worry much about what that means.
+Next, make sure you have used Git to clone the starter code. This code is divided into 3 main directories: client, server, and shared. These are connected in a single [NPM workspace](https://docs.npmjs.com/cli/v7/using-npm/workspaces), but you shouldn’t have to worry much about what that means. If you are new to Git, you may want to review ["Learning Basics of Git"](learning-github.md) first! We expect all students to be able to use add/commit/push for their work.
 
 After that, follow the following steps:
 
@@ -147,18 +155,9 @@ You can test the server by going to the `server` directory and running `npm run 
 
 You will submit your code by pushing the final version into your repository (add/commit/push). In this assignment, you should only be making, committing, and pushing changes to the `main` branch of your repository. Be sure to check if the correct version is submitted before the deadline.
 
-On Gradescope, you will submit a .pdf file containing two things:
+On Canvas, you will submit a .pdf file containing written responses and cURL commands requested in Task 3. Your code is already submitted to your project's GitHub repo on pawtograder.
 
- 1. The link to your project's GitHub repo (e.g. `https://github.com/neu-cs4530/ip1-robsimmons`)
- 2. The written responses and cURL commands requested in Task 3.
-
-We will grade your code on GitHub by using the "Feedback" PR that is automatically created when the assignment is. The Feedback PR can be found under the "Pull requests" menu, like this:
-
-![image]({{site.baseurl}}{% link /Assignments/ip1/github-pr.png %})
-
-If you don't see your Feedback PR for the assignment, let us know on Piazza (be sure include your GitHub username).
-
-Grades will be assigned on Gradescope and synced to the Canvas Gradebook.
+We will grade your code on Pawtograder and grades will be synced to the Canvas Gradebook.
 
 ### TypeScript ESLint, Vitest, and Configuration Files
 
