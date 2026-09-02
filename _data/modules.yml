@@ -6,7 +6,7 @@ mod1:
   page: /modules/1-user-stories
 mod2:
   name: From Requirements to Tests
-  page: 
+  page: /modules/2-requirements-to-tests
 mod2a:
   name: Requirements Analysis
   page: 
