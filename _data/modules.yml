@@ -21,7 +21,7 @@ mod4:
   page: 
 mod5:
   name: React Part 1 (Introduction)
-  page: 
+  page: /modules/5-react
 mod6:
   name: React Part 2 (Hooks)
   page: 
