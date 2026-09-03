@@ -18,7 +18,7 @@ mod3:
   page: 
 mod4:
   name: Design Patterns for Web Applications
-  page: 
+  page: /modules/4-web-apps
 mod5:
   name: React Part 1 (Introduction)
   page: 
