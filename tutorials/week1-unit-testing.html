@@ -1,0 +1,1520 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <link rel="stylesheet" href="/CS4530-Fall-2026/assets/css/just-the-docs-default.css">
+
+  <link rel="stylesheet" href="/CS4530-Fall-2026/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+
+  <style id="jtd-nav-activation">
+  
+
+    .site-nav > ul.nav-list:first-child > li > a,
+    
+    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(3)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:not(:first-child) a,
+    .site-nav li.external a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(3) > a {
+      font-weight: 600;
+      text-decoration: none;
+    }.site-nav > ul.nav-list:first-child > li:nth-child(4) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(3) > button svg {
+      transform: rotate(-90deg);
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list > li.nav-list-item:nth-child(3) > ul.nav-list {
+      display: block;
+    }
+  </style>
+
+  
+
+  
+    <script src="/CS4530-Fall-2026/assets/js/vendor/lunr.min.js"></script>
+  
+
+  <script src="/CS4530-Fall-2026/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+
+
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Unit Testing with Vitest | CS4530, Fall 2026</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Unit Testing with Vitest" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Northeastern University CS 4530 “Fundamentals of Software Engineering”, Fall 2026. Professors Adeel Bhutta and Mitch Wand." />
+<meta property="og:description" content="Northeastern University CS 4530 “Fundamentals of Software Engineering”, Fall 2026. Professors Adeel Bhutta and Mitch Wand." />
+<link rel="canonical" href="https://neu-se.github.io/CS4530-Fall-2026/tutorials/week1-unit-testing" />
+<meta property="og:url" content="https://neu-se.github.io/CS4530-Fall-2026/tutorials/week1-unit-testing" />
+<meta property="og:site_name" content="CS4530, Fall 2026" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Unit Testing with Vitest" />
+<script type="application/ld+json">
+{"description":"Northeastern University CS 4530 “Fundamentals of Software Engineering”, Fall 2026. Professors Adeel Bhutta and Mitch Wand.","headline":"Unit Testing with Vitest","url":"https://neu-se.github.io/CS4530-Fall-2026/tutorials/week1-unit-testing","@type":"WebPage","dateModified":"2026-09-04T19:11:34+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+</head>
+
+<body>
+  <a class="skip-to-main" href="#main-content">Skip to main content</a>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="svg-link" viewBox="0 0 24 24">
+  <title>Link</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+  </svg>
+</symbol>
+
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+  <title>Menu</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+    <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</symbol>
+
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+  <title>Expand</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+</symbol>
+
+  <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE -->
+<symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+  <title id="svg-external-link-title">(external link)</title>
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+</symbol>
+
+  
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+  <title>Document</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+  </svg>
+</symbol>
+
+    <symbol id="svg-search" viewBox="0 0 24 24">
+  <title>Search</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</symbol>
+
+  
+  
+    <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md -->
+<symbol id="svg-copy" viewBox="0 0 16 16">
+  <title>Copy</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg>
+</symbol>
+<symbol id="svg-copied" viewBox="0 0 16 16">
+  <title>Copied</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/>
+  </svg>
+</symbol>
+
+  
+</svg>
+
+  
+    <header class="side-bar">
+  <div class="site-header">
+    <a href="/CS4530-Fall-2026/" class="site-title lh-tight">
+  CS4530, Fall 2026
+
+</a>
+    <button id="menu-button" class="site-button btn-reset" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
+    </button>
+  </div>
+
+  <nav aria-label="Main" id="site-nav" class="site-nav">
+  
+  
+    <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Calendar submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/calendar/" class="nav-list-link">Calendar</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s1" class="nav-list-link">Section 1 - Calendar</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s2" class="nav-list-link">Section 2 - Calendar</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s5" class="nav-list-link">Section 5 - Calendar</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s12" class="nav-list-link">Section 12 - Calendar</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Modules submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/modules/" class="nav-list-link">Modules</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/1-user-stories" class="nav-list-link">1 - Orientation & User Stories</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Assignments submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/assignments/" class="nav-list-link">Assignments</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/project-overview" class="nav-list-link">Project Overview</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Tutorials submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/tutorials/" class="nav-list-link">Tutorials</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-getting-started" class="nav-list-link">Installing a Development Environment</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-typescript-basics" class="nav-list-link">TypeScript Basics</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-unit-testing" class="nav-list-link">Unit Testing with Vitest</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-apirequests" class="nav-list-link">Guide to API Requests</a></li></ul></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/textbooks/" class="nav-list-link">Textbooks</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/staff/" class="nav-list-link">Staff</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Policies submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/policies/" class="nav-list-link">Policies</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/policies/ai" class="nav-list-link">Policy on Use of AI</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/policies/style/" class="nav-list-link">Code Style</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/policies/debugging/" class="nav-list-link">Debugging</a></li></ul></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/resources/" class="nav-list-link">Other Resources</a></li></ul>
+  
+</nav>
+
+
+<div class="d-md-block d-none site-footer">
+  
+  
+    This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+  
+  </div>
+</header>
+
+  
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+  
+    
+
+<div class="search" role="search">
+  <div class="search-input-wrap">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search CS4530, Fall 2026" autocomplete="off">
+    <label for="search-input" class="search-label">
+      <span class="sr-only">Search CS4530, Fall 2026</span>
+      <svg viewBox="0 0 24 24" class="search-icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg>
+    </label>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+  
+  
+  
+</div>
+
+    <div class="main-content-wrap">
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb-nav-list">
+    <li class="breadcrumb-nav-list-item"><a href="/CS4530-Fall-2026/tutorials/">Tutorials</a></li>
+    <li class="breadcrumb-nav-list-item"><span>Unit Testing with Vitest</span></li>
+  </ol>
+</nav>
+
+
+      <div id="main-content" class="main-content">
+        <main>
+          
+            <div class="fs-1 text-right fw-300">Last updated: Sep 04, 26 19:11 UTC | <a href="/CS4530-Fall-2026/tutorials/week1-unit-testing">Permalink</a></div>
+
+<p>This tutorial covers the basics on unit testing with Vitest. By the end of this tutorial, you will have an introduction to unit testing with Vitest, best practices, and some handy tricks and tips to use in your tests.</p>
+
+<p><em>Note:</em> Run <code class="language-plaintext highlighter-rouge">npm i</code> on the handouts before proceeding to update/run the tests.</p>
+
+<p>Contents:</p>
+
+<ul>
+  <li><a href="#understanding-unit-testing">Understanding Unit Testing</a></li>
+  <li><a href="#testing-with-vitest">Testing with Vitest</a>
+    <ul>
+      <li><a href="#basics">Basics</a>
+        <ul>
+          <li><a href="#specs">Specs</a></li>
+        </ul>
+      </li>
+      <li><a href="#matchers">Matchers</a>
+        <ul>
+          <li><a href="#toequal-vs-tobe-vs-tostrictequal">.toEqual() vs .toBe() vs .toStrictEqual()</a></li>
+        </ul>
+      </li>
+      <li><a href="#aaa">AAA</a>
+        <ul>
+          <li><a href="#assemble">Assemble</a></li>
+          <li><a href="#act">Act</a></li>
+          <li><a href="#assert">Assert</a></li>
+        </ul>
+      </li>
+      <li><a href="#setup-and-teardown">Setup and Teardown</a></li>
+      <li><a href="#mock-testing">Mock Testing</a>
+        <ul>
+          <li><a href="#spy">Spy</a></li>
+          <li><a href="#mock">Mock</a></li>
+          <li><a href="#stub">Stub</a></li>
+        </ul>
+      </li>
+      <li><a href="#testing-asynchronous-code">Testing Asynchronous Code</a>
+        <ul>
+          <li><a href="#promise">Promise</a></li>
+          <li><a href="#testing-promise-rejections">Testing Promise Rejections</a></li>
+          <li><a href="#callbacks">Callbacks</a></li>
+        </ul>
+      </li>
+      <li><a href="#ui-testing">UI Testing</a></li>
+    </ul>
+  </li>
+  <li><a href="#setting-up-testing-using-vitest-in-vscode">Setting up testing using Vitest in VSCode</a>
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#requirements">Requirements</a></li>
+      <li><a href="#installation">Installation</a>
+        <ul>
+          <li><a href="#direct-installation">Direct Installation</a></li>
+          <li><a href="#from-visual-studio-marketplace">From Visual Studio Marketplace</a></li>
+        </ul>
+      </li>
+      <li><a href="#verifying-installation">Verifying Installation</a></li>
+      <li><a href="#project-configuration">Project Configuration</a></li>
+      <li><a href="#using-the-extension">Using the Extension</a></li>
+      <li><a href="#debugging-tests">Debugging Tests</a></li>
+      <li><a href="#extension-settings">Extension Settings</a></li>
+      <li><a href="#troubleshooting">Troubleshooting</a></li>
+    </ul>
+  </li>
+  <li><a href="#general-guidelines-for-writing-tests">General Guidelines For Writing Tests</a></li>
+</ul>
+<h1 id="understanding-unit-testing">
+  
+  
+    <a href="#understanding-unit-testing" class="anchor-heading" aria-labelledby="understanding-unit-testing"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Understanding Unit Testing
+  
+  
+</h1>
+    
+<p>At some point, every programmer has wondered why they should spend time writing test cases instead of focusing on implementing a new feature. The reason for this is that it is important! In this tutorial, we’ll go through several aspects of unit testing, with a focus on utilizing Vitest. Before we get into that, let’s define unit testing and why it’s so important in the real world.</p>
+
+<p>Unit testing is not a new concept; it has been around for a long time. “Unit tests are often automated tests prepared and executed by software engineers to check that a portion of an application (referred to as a “unit”) matches its design and behaves as expected,” according to Wikipedia. So, to put it another way, it’s a technique to undertake rigorous testing of every single function/module in isolation.</p>
+
+<p>Unit testing techniques:</p>
+<ul>
+  <li><strong>Black Box Testing</strong> : It is a process of validating a function’s input and output without any knowledge of its internal implementation details.</li>
+  <li><strong>White Box Testing</strong> : Unlike Black Box testing, white box testing focuses on testing the specific internal code flows, uncovering any unidentified error or bug in that component.</li>
+  <li><strong>Gray Box Testing</strong>  : Gray Box testing is a combination of the two above wherein partial knowledge of the internal code is needed. This strategy lowers a tester’s reliance on a developer for every minor issue, allowing the tester to detect and resolve it alone.</li>
+</ul>
+<h1 id="testing-with-vitest">
+  
+  
+    <a href="#testing-with-vitest" class="anchor-heading" aria-labelledby="testing-with-vitest"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Testing with Vitest
+  
+  
+</h1>
+    
+<h2 id="basics">
+  
+  
+    <a href="#basics" class="anchor-heading" aria-labelledby="basics"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Basics
+  
+  
+</h2>
+    
+
+<p>To understand the basics of unit testing, let us look at the file called ‘calculator.ts’ present in the directory src/services/math/. This file contains a class called Calculator with a method for add() defined as shown below:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// Contents of src/services/math/calculator.ts</span>
+
+  <span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">Calculator</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nx">add</span><span class="p">(</span><span class="nx">num1</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span> <span class="nx">num2</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">number</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">result</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">num1</span> <span class="o">+</span> <span class="nx">num2</span><span class="p">;</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">The result is: </span><span class="dl">"</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Let us write some tests for this code using Vitest. The test code will go into a file in the same directory titled ‘calculator.test.ts’. Create this file now. This pattern of ‘file-name.test.ts’ is how you should name all of your test files when using Vitest.</p>
+
+<p>All test files start with a suite. A suite is a collection of tests (or a logical grouping of tests). In Vitest, a suite is created by using the function <code class="language-plaintext highlighter-rouge">describe()</code>. The suite takes 2 arguments: the 1st being the description of the suite and the second being a callback function. Additionally, suites can be nested to form logical groups.
+Suites can further be broken down into 3 components that we will explore in detail shortly:</p>
+
+<ol>
+  <li>Setup</li>
+  <li>Teardown</li>
+  <li>Test</li>
+</ol>
+
+<p>Syntax:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">Description of suite</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// The tests go here.</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Suites can be used to make debugging easier when you are using a large number of tests. Here is one recommended suite hierarchy:</p>
+
+<ul>
+  <li>Top level describe should contain the file path after src.</li>
+  <li>Second describe should contain the name of the Class/File being tested.</li>
+  <li>Subsequent describe blocks should contain the name of the function being tested.</li>
+</ul>
+
+<p>Using this hierarchy, the test file for the above example would look as follows:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">services &gt; math</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">Calculator</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">add()</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// Tests for add() go here.</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+<h3 id="specs">
+  
+  
+    <a href="#specs" class="anchor-heading" aria-labelledby="specs"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Specs
+  
+  
+</h3>
+    
+
+<p>A spec is an actual test that executes some code and asserts some result. A test is created using the keyword <code class="language-plaintext highlighter-rouge">it()</code> or <code class="language-plaintext highlighter-rouge">test()</code>. Similar to <code class="language-plaintext highlighter-rouge">describe()</code>, <code class="language-plaintext highlighter-rouge">it()</code> takes 2 arguments, the first being the description of the test and the second being a callback. Generally, we want to describe what the code <em>should</em> do in the description of <code class="language-plaintext highlighter-rouge">it()</code> and assert the described behavior within the test. Each test can be broken down into 3 parts (Assemble, Act, Assert) which makes up the AAA pattern. Optionally, there may be a clean-up/teardown step after the assert.</p>
+
+<p>Syntax:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should check a specific behavior</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{});</span>
+</code></pre></div></div>
+
+<p>Let us write a simple test for our add() method to check 1 + 1 = 2.
+We start by adding a spec to the suite we created previously.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">services &gt; math</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">Calculator</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">add()</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should return 2 when inputs are 1 and 1</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="c1">// Assemble</span>
+          <span class="c1">// Act</span>
+          <span class="c1">// Assert</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+<h2 id="matchers">
+  
+  
+    <a href="#matchers" class="anchor-heading" aria-labelledby="matchers"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Matchers
+  
+  
+</h2>
+    
+<h3 id="toequal-vs-tobe-vs-tostrictequal">
+  
+  
+    <a href="#toequal-vs-tobe-vs-tostrictequal" class="anchor-heading" aria-labelledby="toequal-vs-tobe-vs-tostrictequal"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> .toEqual() vs .toBe() vs .toStrictEqual()
+  
+  
+</h3>
+    
+
+<p>All three matchers are used to test equality, though they have slight but important differences. To understand these differences, let us take a look at the example of Store.ts with the below code.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">Store</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="nx">_data</span><span class="p">:</span> <span class="kr">any</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="nx">getData</span><span class="p">():</span> <span class="kr">any</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">Store</span><span class="p">.</span><span class="nx">_data</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="nx">setData</span><span class="p">(</span><span class="nx">data</span><span class="p">:</span> <span class="kr">any</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+      <span class="nx">Store</span><span class="p">.</span><span class="nx">_data</span> <span class="o">=</span> <span class="nx">data</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Use .toEqual() to compare recursively all properties of object instances (also known as “deep” equality). It calls Object.is to compare primitive values, which is even better for testing than ‘===’, the strict equality operator.
+This is the most commonly used matcher.</li>
+</ol>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">import</span> <span class="p">{</span> <span class="nx">describe</span><span class="p">,</span> <span class="nx">it</span><span class="p">,</span> <span class="nx">expect</span><span class="p">,</span> <span class="nx">beforeEach</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vitest</span><span class="dl">'</span><span class="p">;</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">utils &gt; store</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">Store</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">Store</span><span class="p">[</span><span class="dl">"</span><span class="s2">_data</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+      <span class="p">});</span>
+
+      <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">setData()</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should assign the input data to Store._data</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="nx">mockData</span> <span class="o">=</span> <span class="p">{</span> <span class="na">key</span><span class="p">:</span> <span class="dl">"</span><span class="s2">value</span><span class="dl">"</span> <span class="p">};</span>
+
+          <span class="nx">Store</span><span class="p">.</span><span class="nx">setData</span><span class="p">(</span><span class="nx">mockData</span><span class="p">);</span>
+
+          <span class="nx">expect</span><span class="p">(</span><span class="nx">Store</span><span class="p">[</span><span class="dl">"</span><span class="s2">_data</span><span class="dl">"</span><span class="p">]).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">mockData</span><span class="p">);</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+
+      <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">getData()</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should return an object equal to Store._data</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="nx">mockData</span> <span class="o">=</span> <span class="p">{</span> <span class="na">key</span><span class="p">:</span> <span class="dl">"</span><span class="s2">value</span><span class="dl">"</span> <span class="p">};</span>
+          <span class="nx">Store</span><span class="p">[</span><span class="dl">"</span><span class="s2">_data</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="nx">mockData</span><span class="p">;</span>
+
+          <span class="kd">const</span> <span class="nx">returnedValue</span> <span class="o">=</span> <span class="nx">Store</span><span class="p">.</span><span class="nx">getData</span><span class="p">();</span>
+
+          <span class="nx">expect</span><span class="p">(</span><span class="nx">returnedValue</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">mockData</span><span class="p">);</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Use .toBe() to compare primitive values or to check referential identity of object instances. It calls Object.is to compare values, which is even better for testing than ‘===’, the strict equality operator.</li>
+</ol>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">getData()</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should return an object with the same reference as Store._data</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">mockData</span> <span class="o">=</span> <span class="p">{</span> <span class="na">key</span><span class="p">:</span> <span class="dl">"</span><span class="s2">value</span><span class="dl">"</span> <span class="p">};</span>
+      <span class="nx">Store</span><span class="p">[</span><span class="dl">"</span><span class="s2">_data</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="nx">mockData</span><span class="p">;</span>
+
+      <span class="kd">const</span> <span class="nx">returnedValue</span> <span class="o">=</span> <span class="nx">Store</span><span class="p">.</span><span class="nx">getData</span><span class="p">();</span>
+
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">returnedValue</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">mockData</span><span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">returnedValue</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">mockData</span><span class="p">);</span> <span class="c1">// Same reference</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">Store</span><span class="p">[</span><span class="dl">"</span><span class="s2">_data</span><span class="dl">"</span><span class="p">]).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">mockData</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Use .toStrictEqual() to test that objects have the same types as well as structure.
+This checks for undefined in Objects and sparseness in Arrays.
+    <ul>
+      <li>{ key: undefined } is not strictly equal to { }.</li>
+      <li>[ , 1] is not strictly equal to [undefined, 1].</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should return an object strictly equal to object stored in Store._data</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">mockData</span> <span class="o">=</span> <span class="p">{</span> <span class="na">key</span><span class="p">:</span> <span class="dl">"</span><span class="s2">value</span><span class="dl">"</span> <span class="p">};</span>
+    <span class="kd">const</span> <span class="nx">mockDataWithUndefined</span> <span class="o">=</span> <span class="p">{</span> <span class="na">key</span><span class="p">:</span> <span class="dl">"</span><span class="s2">value</span><span class="dl">"</span><span class="p">,</span> <span class="na">key2</span><span class="p">:</span> <span class="kc">undefined</span> <span class="p">};</span>
+    <span class="nx">Store</span><span class="p">[</span><span class="dl">"</span><span class="s2">_data</span><span class="dl">"</span><span class="p">]</span> <span class="o">=</span> <span class="nx">mockData</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">returnedValue</span> <span class="o">=</span> <span class="nx">Store</span><span class="p">.</span><span class="nx">getData</span><span class="p">();</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">returnedValue</span><span class="p">).</span><span class="nx">toStrictEqual</span><span class="p">(</span><span class="nx">mockData</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">returnedValue</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">mockDataWithUndefined</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">returnedValue</span><span class="p">).</span><span class="nx">not</span><span class="p">.</span><span class="nx">toStrictEqual</span><span class="p">(</span><span class="nx">mockDataWithUndefined</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+<h2 id="aaa">
+  
+  
+    <a href="#aaa" class="anchor-heading" aria-labelledby="aaa"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> AAA
+  
+  
+</h2>
+    
+
+<p>The AAA pattern stands for <strong>Assemble-Act-Assert</strong>. You may also see this referred to as <strong>Assemble-Act-Assess</strong> in some materials (including lecture slides), as one typically assesses code behavior using assert statements. Both terms are used interchangeably in practice.</p>
+<h3 id="assemble">
+  
+  
+    <a href="#assemble" class="anchor-heading" aria-labelledby="assemble"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Assemble
+  
+  
+</h3>
+    
+
+<p>In order to run a test, we need to first assemble it. This may include creating instances of classes/variables, setting up test data for inputs, setting up spies/stubs/mocks (which will be covered in subsequent sections), or setting up the expected output. In simple cases, one may not need to assemble the test. This phase is very similar to the setup phase.</p>
+
+<p>In our example, let us create an instance of the Calculator class as part of assembling the test.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">import</span> <span class="p">{</span> <span class="nx">describe</span><span class="p">,</span> <span class="nx">it</span><span class="p">,</span> <span class="nx">expect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vitest</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">import</span> <span class="nx">Calculator</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./calculator</span><span class="dl">"</span><span class="p">;</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">services &gt; math</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">Calculator</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">add()</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should return 2 when inputs are 1 and 1</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="na">calculator</span><span class="p">:</span> <span class="nx">Calculator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Calculator</span><span class="p">();</span>
+
+          <span class="c1">// Act</span>
+
+          <span class="c1">// Assert</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+<h3 id="act">
+  
+  
+    <a href="#act" class="anchor-heading" aria-labelledby="act"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Act
+  
+  
+</h3>
+    
+
+<p>In this step, we actually execute the function under test with required inputs and get the returned result (if any).</p>
+
+<p>In our example, we will invoke the add() method with inputs (1, 1) and get the result.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">import</span> <span class="p">{</span> <span class="nx">describe</span><span class="p">,</span> <span class="nx">it</span><span class="p">,</span> <span class="nx">expect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vitest</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">import</span> <span class="nx">Calculator</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./calculator</span><span class="dl">"</span><span class="p">;</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">services &gt; math</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">Calculator</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">add()</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should return 2 when inputs are 1 and 1</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="na">calculator</span><span class="p">:</span> <span class="nx">Calculator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Calculator</span><span class="p">();</span>
+
+          <span class="kd">const</span> <span class="na">result</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">calculator</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+          <span class="c1">// Assert</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+<h3 id="assert">
+  
+  
+    <a href="#assert" class="anchor-heading" aria-labelledby="assert"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Assert
+  
+  
+</h3>
+    
+
+<p>Assertion is a statement that validates the behavior of our code by comparing the actual result against the expected results. There are many assertions provided by Vitest, including some useful assertions we will use throughout our tests. Some of these assertions are listed below:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">expect(actual).toEqual(expected)</code> // Expects both entities to have the same value.</li>
+  <li><code class="language-plaintext highlighter-rouge">expect(actual).toBe(expected)</code> // Expects both entities to be the same.</li>
+  <li><code class="language-plaintext highlighter-rouge">expect(spy/stub/mock).toHaveBeenCalled()</code> // Expects a function being spied/stubbed/mocked to be invoked.</li>
+  <li><code class="language-plaintext highlighter-rouge">expect(spy/stub/mock).toHaveBeenCalledWith([arguments])</code> // Expects a function being spied/stubbed/mocked to be invoked with specified arguments.</li>
+  <li><code class="language-plaintext highlighter-rouge">expect(actual).toBeDefined()</code> // Expects the entity to be defined.</li>
+  <li><code class="language-plaintext highlighter-rouge">expect(actual).not.</code> // Negates the assertion. Can be chained with any matchers above</li>
+  <li><code class="language-plaintext highlighter-rouge">await expect(error causing code returning a promise).rejects.toThrowError()</code> // Waits for the error throwing code that returns promise (e.g. an API call) to throw the error and asserts the error was thrown.</li>
+</ul>
+
+<p>A full list of matchers can be found <a href="https://vitest.dev/api/expect.html">here</a>.</p>
+
+<p>In our example, we can use the .toEqual() matcher.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">import</span> <span class="p">{</span> <span class="nx">describe</span><span class="p">,</span> <span class="nx">it</span><span class="p">,</span> <span class="nx">expect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vitest</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">import</span> <span class="nx">Calculator</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./calculator</span><span class="dl">"</span><span class="p">;</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">services &gt; math</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">Calculator</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">add()</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should return 2 when inputs are 1 and 1</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="na">calculator</span><span class="p">:</span> <span class="nx">Calculator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Calculator</span><span class="p">();</span>
+
+          <span class="kd">const</span> <span class="na">result</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">calculator</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+          <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+<h2 id="setup-and-teardown">
+  
+  
+    <a href="#setup-and-teardown" class="anchor-heading" aria-labelledby="setup-and-teardown"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Setup and Teardown
+  
+  
+</h2>
+    
+
+<p>Often in tests, we need some things to happen before a test actually runs and some things to happen after it. This may include resetting/initializing values, setting up test data, setting up spies/stubs/mocks, cleaning up variables after a test, or resetting spies/stubs/mocks. Sometimes these steps may need to be repeated for each test. This is where the setup and teardown can be especially useful.</p>
+
+<p>Vitest Provides 2 methods for setup and 2 methods for teardown:</p>
+
+<ul>
+  <li>beforeAll(): Runs one time before all the tests in a suite.</li>
+  <li>beforeEach(): Runs before every test in a suite.</li>
+  <li>afterEach(): Runs after every test in a suite.</li>
+  <li>afterAll(): Runs once after all tests in a suite.</li>
+</ul>
+
+<p>In our example, notice we created an instance of calculator in our Assemble phase. We will probably have multiple tests for the calculator that will require this instance. In order to avoid repeating this in every step, let us move this to the setup phase and add a teardown to clear this after all tests.</p>
+
+<p><em>Note:</em> Use beforeEach()/afterEach() if the function/class stores state, and we need a clean instance for each test. In our case, calculator does not store any state, and we can share the same instance across tests with out any side effects. Hence, we will use beforeAll()/afterAll().</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">import</span> <span class="p">{</span> <span class="nx">describe</span><span class="p">,</span> <span class="nx">it</span><span class="p">,</span> <span class="nx">expect</span><span class="p">,</span> <span class="nx">beforeAll</span><span class="p">,</span> <span class="nx">afterAll</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vitest</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">import</span> <span class="nx">Calculator</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./calculator</span><span class="dl">"</span><span class="p">;</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">services &gt; math</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">Calculator</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">add()</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="na">calculator</span><span class="p">:</span> <span class="nx">Calculator</span><span class="p">;</span>
+
+        <span class="nx">beforeAll</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="nx">calculator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Calculator</span><span class="p">();</span>
+        <span class="p">});</span>
+
+        <span class="nx">afterAll</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="p">(</span><span class="o">&lt;</span><span class="kr">any</span><span class="o">&gt;</span><span class="nx">calculator</span><span class="p">)</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+        <span class="p">});</span>
+
+        <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should return 2 when inputs are 1 and 1</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="na">result</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">calculator</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+          <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Let us add another test to cover a different scenario, such as adding negative numbers.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">import</span> <span class="p">{</span> <span class="nx">describe</span><span class="p">,</span> <span class="nx">it</span><span class="p">,</span> <span class="nx">expect</span><span class="p">,</span> <span class="nx">beforeAll</span><span class="p">,</span> <span class="nx">afterAll</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vitest</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">import</span> <span class="nx">Calculator</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./calculator</span><span class="dl">"</span><span class="p">;</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">services &gt; math</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">Calculator</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">add()</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="na">calculator</span><span class="p">:</span> <span class="nx">Calculator</span><span class="p">;</span>
+
+        <span class="nx">beforeAll</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="nx">calculator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Calculator</span><span class="p">();</span>
+        <span class="p">});</span>
+
+        <span class="nx">afterAll</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="p">(</span><span class="o">&lt;</span><span class="kr">any</span><span class="o">&gt;</span><span class="nx">calculator</span><span class="p">)</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+        <span class="p">});</span>
+
+        <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should return 2 when inputs are 1 and 1</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="na">result</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">calculator</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+          <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+        <span class="p">});</span>
+
+        <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should return -2 when inputs are -1 and -1</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="na">result</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">calculator</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+
+          <span class="nx">expect</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+<h2 id="mock-testing">
+  
+  
+    <a href="#mock-testing" class="anchor-heading" aria-labelledby="mock-testing"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Mock Testing
+  
+  
+</h2>
+    
+<p>As a project grows so do the interdependencies in the project. A function under test can have dependencies from various external entities. This may include other functions, network requests, database connections, or built-in connections. Spies, Stubs, and Mocks are ways of dealing with such external dependencies. You can read more on what you can do with spies/stubs/mocks <a href="https://vitest.dev/api/vi.html">here</a>.</p>
+<h3 id="spy">
+  
+  
+    <a href="#spy" class="anchor-heading" aria-labelledby="spy"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Spy
+  
+  
+</h3>
+    
+
+<p>A spy is a watcher on a function that tracks various properties of the function being spied on. This can return information such as whether a function was invoked, how many times it was invoked, and what argument it was invoked with. A spy on a function is created using the syntax <code class="language-plaintext highlighter-rouge">const spy = vi.spyOn(object, 'methodName');</code></p>
+
+<p><em>Note:</em> The function being spied on actually executes.</p>
+
+<p>In our example, we have an external dependency on console.log(). Let us add a spy and test for it.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">import</span> <span class="p">{</span> <span class="nx">describe</span><span class="p">,</span> <span class="nx">it</span><span class="p">,</span> <span class="nx">expect</span><span class="p">,</span> <span class="nx">beforeAll</span><span class="p">,</span> <span class="nx">afterAll</span><span class="p">,</span> <span class="nx">vi</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vitest</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">import</span> <span class="nx">Calculator</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./calculator</span><span class="dl">"</span><span class="p">;</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">services &gt; math</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">Calculator</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">add()</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="na">calculator</span><span class="p">:</span> <span class="nx">Calculator</span><span class="p">;</span>
+
+        <span class="nx">beforeAll</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="nx">calculator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Calculator</span><span class="p">();</span>
+        <span class="p">});</span>
+
+        <span class="nx">afterAll</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="p">(</span><span class="o">&lt;</span><span class="kr">any</span><span class="o">&gt;</span><span class="nx">calculator</span><span class="p">)</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+        <span class="p">});</span>
+
+        <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should invoke console.log() with the result 2 for inputs 1 and 1</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="kd">const</span> <span class="nx">logSpy</span> <span class="o">=</span> <span class="nx">vi</span><span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="dl">"</span><span class="s2">log</span><span class="dl">"</span><span class="p">);</span>
+
+          <span class="kd">const</span> <span class="na">result</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">calculator</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+          <span class="nx">expect</span><span class="p">(</span><span class="nx">logSpy</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span><span class="dl">"</span><span class="s2">The result is: </span><span class="dl">"</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+
+          <span class="nx">logSpy</span><span class="p">.</span><span class="nx">mockRestore</span><span class="p">();</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+<h3 id="mock">
+  
+  
+    <a href="#mock" class="anchor-heading" aria-labelledby="mock"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Mock
+  
+  
+</h3>
+    
+
+<p>A mock is a function which replaces an existing function. In our example, if we wanted to change the behavior of console.log() for our tests, we can do so using a mock. A mock implementation can be substituted for a spy or a vi.fn(). The syntax is as below:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">spy</span><span class="p">.</span><span class="nx">mockImplementation</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// new function body goes here.</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p><em>Note:</em> The function being mocked does not execute.
+In our example, if we wanted to replace the behavior of console.log(), we can do so as shown:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should invoke console.log() with the result 2 for inputs 1 and 1</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">logSpy</span> <span class="o">=</span> <span class="nx">vi</span><span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="dl">"</span><span class="s2">log</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">logSpy</span><span class="p">.</span><span class="nx">mockImplementation</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// This will no longer print to console.</span>
+    <span class="p">});</span>
+
+    <span class="kd">const</span> <span class="na">result</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">calculator</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">logSpy</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span><span class="dl">"</span><span class="s2">The result is: </span><span class="dl">"</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+
+    <span class="nx">logSpy</span><span class="p">.</span><span class="nx">mockRestore</span><span class="p">();</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p><em>Warning:</em> Watch out for circular dependencies in mock implementations.</p>
+<h3 id="stub">
+  
+  
+    <a href="#stub" class="anchor-heading" aria-labelledby="stub"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Stub
+  
+  
+</h3>
+    
+
+<p>A stub is a special kind of mock which does not require an alternate implementation but instead returns some value that we specify. When a stub gets invoked, it does not invoke the actual function, but returns the desired value instead. The syntax is as below:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">spy</span><span class="p">.</span><span class="nx">mockReturnValue</span><span class="p">(</span><span class="nx">someValue</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>To return a promise, we can use:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">spy</span><span class="p">.</span><span class="nx">mockResolvedValue</span><span class="p">(</span><span class="nx">someValue</span><span class="p">);</span>
+</code></pre></div></div>
+<p>This can be especially handy when stubbing Axios requests.</p>
+
+<p>Using a stub in our example simply prevents console.log() from being executed, since it does not return a value anyway.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should invoke console.log() with the result 2 for inputs 1 and 1</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">logSpy</span> <span class="o">=</span> <span class="nx">vi</span><span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nx">console</span><span class="p">,</span> <span class="dl">"</span><span class="s2">log</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">logSpy</span><span class="p">.</span><span class="nx">mockReturnValue</span><span class="p">();</span>
+
+    <span class="kd">const</span> <span class="na">result</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">calculator</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">logSpy</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span><span class="dl">"</span><span class="s2">The result is: </span><span class="dl">"</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+
+    <span class="nx">logSpy</span><span class="p">.</span><span class="nx">mockRestore</span><span class="p">();</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+<h2 id="testing-asynchronous-code">
+  
+  
+    <a href="#testing-asynchronous-code" class="anchor-heading" aria-labelledby="testing-asynchronous-code"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Testing Asynchronous Code
+  
+  
+</h2>
+    
+<h3 id="promise">
+  
+  
+    <a href="#promise" class="anchor-heading" aria-labelledby="promise"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Promise
+  
+  
+</h3>
+    
+
+<p>In previous tutorials, we have used Axios to make http requests which return promises. This is how we can write tests for axios requests. Consider the example below:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">;</span>
+  <span class="k">import</span> <span class="nx">Store</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../../utils/store/store</span><span class="dl">"</span><span class="p">;</span>
+
+  <span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">HttpService</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nx">getData</span><span class="p">():</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">any</span><span class="o">&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/myUrl</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>We can test the above code as follows:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// Assuming we have done the setup as in previous tests</span>
+  <span class="k">import</span> <span class="p">{</span> <span class="nx">describe</span><span class="p">,</span> <span class="nx">it</span><span class="p">,</span> <span class="nx">expect</span><span class="p">,</span> <span class="nx">vi</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vitest</span><span class="dl">'</span><span class="p">;</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">getData()</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="dl">'</span><span class="s1">should invoke axios.get() with "myUrl"</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">getStub</span> <span class="o">=</span> <span class="nx">vi</span>
+        <span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nx">axios</span><span class="p">,</span> <span class="dl">"</span><span class="s2">get</span><span class="dl">"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">mockResolvedValue</span><span class="p">({</span> <span class="na">status</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="na">data</span><span class="p">:</span> <span class="p">{}</span> <span class="p">});</span>
+
+      <span class="k">await</span> <span class="nx">httpService</span><span class="p">.</span><span class="nx">getData</span><span class="p">();</span>
+
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">getStub</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span><span class="dl">"</span><span class="s2">/myUrl</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should return the status as 200</span><span class="dl">"</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">getStub</span> <span class="o">=</span> <span class="nx">vi</span>
+        <span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nx">axios</span><span class="p">,</span> <span class="dl">"</span><span class="s2">get</span><span class="dl">"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">mockResolvedValue</span><span class="p">({</span> <span class="na">status</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="na">data</span><span class="p">:</span> <span class="p">{}</span> <span class="p">});</span>
+
+      <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">httpService</span><span class="p">.</span><span class="nx">getData</span><span class="p">();</span>
+
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+
+      <span class="nx">getStub</span><span class="p">.</span><span class="nx">mockRestore</span><span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+<h4 id="testing-promise-rejections">
+  
+  
+    <a href="#testing-promise-rejections" class="anchor-heading" aria-labelledby="testing-promise-rejections"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Testing Promise Rejections
+  
+  
+</h4>
+    
+
+<p>When testing async functions that are expected to throw errors or reject promises, you need to use <code class="language-plaintext highlighter-rouge">await expect(...).rejects.toThrowError()</code>. This is a common source of bugs in tests — if you forget to use the correct pattern, your test may pass even when the code doesn’t behave as expected.</p>
+
+<p>Consider a function that validates user authentication:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">enforceAuth</span><span class="p">(</span><span class="nx">credentials</span><span class="p">:</span> <span class="p">{</span> <span class="nl">username</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span> <span class="nl">password</span><span class="p">:</span> <span class="kr">string</span> <span class="p">}):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="p">{</span> <span class="na">_id</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span> <span class="nl">username</span><span class="p">:</span> <span class="kr">string</span> <span class="p">}</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">validateCredentials</span><span class="p">(</span><span class="nx">credentials</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Invalid credentials</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="na">_id</span><span class="p">:</span> <span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="na">username</span><span class="p">:</span> <span class="nx">credentials</span><span class="p">.</span><span class="nx">username</span> <span class="p">};</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>We can test both successful authentication and failed authentication as follows:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">import</span> <span class="p">{</span> <span class="nx">describe</span><span class="p">,</span> <span class="nx">it</span><span class="p">,</span> <span class="nx">expect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vitest</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">import</span> <span class="p">{</span> <span class="nx">enforceAuth</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../../src/services/auth.service</span><span class="dl">'</span><span class="p">;</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">enforceAuth</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="dl">'</span><span class="s1">should return a user and id on good auth</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">enforceAuth</span><span class="p">({</span> <span class="na">username</span><span class="p">:</span> <span class="dl">'</span><span class="s1">user1</span><span class="dl">'</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="dl">'</span><span class="s1">pwd1111</span><span class="dl">'</span> <span class="p">});</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">user</span><span class="p">).</span><span class="nx">toStrictEqual</span><span class="p">({</span> <span class="na">_id</span><span class="p">:</span> <span class="nx">expect</span><span class="p">.</span><span class="kr">any</span><span class="p">(</span><span class="nb">String</span><span class="p">),</span> <span class="na">username</span><span class="p">:</span> <span class="dl">'</span><span class="s1">user1</span><span class="dl">'</span> <span class="p">});</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="dl">'</span><span class="s1">should raise on bad auth</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">await</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">enforceAuth</span><span class="p">({</span> <span class="na">username</span><span class="p">:</span> <span class="dl">'</span><span class="s1">user1</span><span class="dl">'</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="dl">'</span><span class="s1">no</span><span class="dl">'</span> <span class="p">})).</span><span class="nx">rejects</span><span class="p">.</span><span class="nx">toThrowError</span><span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p><strong>Important:</strong> Notice the pattern for testing rejections:</p>
+<ul>
+  <li>The test function must be <code class="language-plaintext highlighter-rouge">async</code></li>
+  <li>You must <code class="language-plaintext highlighter-rouge">await</code> the <code class="language-plaintext highlighter-rouge">expect()</code> call</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">.rejects.toThrowError()</code> to assert that the promise rejects with an error</li>
+</ul>
+
+<p>A common mistake is writing the test like this (which won’t work correctly):</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// ❌ INCORRECT - This test will pass even if the function doesn't throw!</span>
+  <span class="nx">it</span><span class="p">(</span><span class="dl">'</span><span class="s1">should raise on bad auth</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">enforceAuth</span><span class="p">({</span> <span class="na">username</span><span class="p">:</span> <span class="dl">'</span><span class="s1">user1</span><span class="dl">'</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="dl">'</span><span class="s1">no</span><span class="dl">'</span> <span class="p">})).</span><span class="nx">toThrow</span><span class="p">();</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p>The correct pattern ensures the test properly waits for the async rejection:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// ✅ CORRECT - Properly tests async rejection</span>
+  <span class="nx">it</span><span class="p">(</span><span class="dl">'</span><span class="s1">should raise on bad auth</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">enforceAuth</span><span class="p">({</span> <span class="na">username</span><span class="p">:</span> <span class="dl">'</span><span class="s1">user1</span><span class="dl">'</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="dl">'</span><span class="s1">no</span><span class="dl">'</span> <span class="p">})).</span><span class="nx">rejects</span><span class="p">.</span><span class="nx">toThrowError</span><span class="p">();</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p><em>Note:</em> You can return different values for subsequent calls to a stub.</p>
+
+<p>Occasionally, you may run into situations where an http request is made but no promise is returned. This is often found in cases involving “fire and forget” calls or a central store with an Observable pattern implementation (e.g. Redux with react). We cannot await a function that does not return a promise. However, we can use fake timers to simulate passage of time to test such asynchronous behavior. Consider the example below:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">;</span>
+  <span class="k">import</span> <span class="nx">Store</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../../utils/store/store</span><span class="dl">"</span><span class="p">;</span>
+
+  <span class="k">export</span> <span class="k">default</span> <span class="kd">class</span> <span class="nx">HttpService</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nx">getData</span><span class="p">():</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="kr">any</span><span class="o">&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/myUrl</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="nx">getDataAndSetStore</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+      <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/myUrl</span><span class="dl">"</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">Store</span><span class="p">.</span><span class="nx">setData</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>We can test the above functionality as follows:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">describe</span><span class="p">(</span><span class="dl">"</span><span class="s2">getDataAndSetStore()</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="dl">'</span><span class="s1">should invoke axios.get() with "myUrl"</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">getStub</span> <span class="o">=</span> <span class="nx">vi</span>
+        <span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nx">axios</span><span class="p">,</span> <span class="dl">"</span><span class="s2">get</span><span class="dl">"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">mockResolvedValue</span><span class="p">({</span> <span class="na">status</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="na">data</span><span class="p">:</span> <span class="p">{}</span> <span class="p">});</span>
+
+      <span class="k">await</span> <span class="nx">httpService</span><span class="p">.</span><span class="nx">getDataAndSetStore</span><span class="p">();</span>
+
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">getStub</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span><span class="dl">"</span><span class="s2">/myUrl</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="dl">"</span><span class="s2">should set the data in store</span><span class="dl">"</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">addDataStub</span> <span class="o">=</span> <span class="nx">vi</span><span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nx">Store</span><span class="p">,</span> <span class="dl">"</span><span class="s2">setData</span><span class="dl">"</span><span class="p">).</span><span class="nx">mockImplementation</span><span class="p">();</span>
+      <span class="kd">const</span> <span class="nx">getStub</span> <span class="o">=</span> <span class="nx">vi</span>
+        <span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nx">axios</span><span class="p">,</span> <span class="dl">"</span><span class="s2">get</span><span class="dl">"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">mockResolvedValue</span><span class="p">({</span> <span class="na">status</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="na">data</span><span class="p">:</span> <span class="dl">"</span><span class="s2">myData</span><span class="dl">"</span> <span class="p">});</span>
+      <span class="nx">vi</span><span class="p">.</span><span class="nx">useFakeTimers</span><span class="p">();</span>
+
+      <span class="nx">httpService</span><span class="p">.</span><span class="nx">getDataAndSetStore</span><span class="p">();</span>
+      <span class="nx">vi</span><span class="p">.</span><span class="nx">runAllTimers</span><span class="p">();</span>
+      <span class="k">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">addDataStub</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span><span class="dl">"</span><span class="s2">myData</span><span class="dl">"</span><span class="p">);</span>
+
+      <span class="nx">addDataStub</span><span class="p">.</span><span class="nx">mockRestore</span><span class="p">();</span>
+      <span class="nx">getStub</span><span class="p">.</span><span class="nx">mockRestore</span><span class="p">();</span>
+      <span class="nx">vi</span><span class="p">.</span><span class="nx">useRealTimers</span><span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p>You can read more about Vitest timers <a href="https://vitest.dev/api/vi.html#vi-usefaketimers">here</a>.</p>
+<h3 id="callbacks">
+  
+  
+    <a href="#callbacks" class="anchor-heading" aria-labelledby="callbacks"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Callbacks
+  
+  
+</h3>
+    
+
+<p>Callbacks are one of the most commonly used patterns for asynchronous programming in JavaScript/TypeScript. Consider the below callback function use case:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">Check if I am a true husky</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="dl">'</span><span class="s1">I am from Northeastern!</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">fetchData</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+<p>Here, fetchData() is a function that takes a callback and would call that callback function later in its implementation. Now consider 2 scenarios:</p>
+
+<p>case 1:</p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetchData</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">callback</span><span class="p">(</span><span class="dl">'</span><span class="s1">I am from Northeastern!</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>case 2:</p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetchData</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="nx">callback</span><span class="p">(</span><span class="dl">'</span><span class="s1">I am not from Northeastern!</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The test case would still pass in either of the above scenarios since fetchData() is an async function, which means the program will not wait for the call to complete.</p>
+
+<p>The correct way to test a callback would be using the argument <code class="language-plaintext highlighter-rouge">done</code> in the test like shown in below example:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">Check if I am a true husky</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="dl">'</span><span class="s1">I am from Northeastern!</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">done</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="nx">fetchData</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Now, the program would wait for done to be invoked. This implementation would correctly test both the above scenarios.</p>
+<h2 id="ui-testing">
+  
+  
+    <a href="#ui-testing" class="anchor-heading" aria-labelledby="ui-testing"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> UI Testing
+  
+  
+</h2>
+    
+<p>Testing UIs can be very tricky, especially when we want to test features involving user interaction (e.g. a user clicking on a button). However, there are some useful tools that can help us. The <a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing Library</a> provides many helpful features that can help us.</p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">render</span><span class="p">,</span> <span class="nx">screen</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@testing-library/react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">Counter</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Counter</span><span class="dl">'</span>
+<span class="nx">it</span><span class="p">(</span><span class="dl">'</span><span class="s1">renders the Counter component correctly</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Counter</span> <span class="o">/&gt;</span><span class="p">);</span>
+
+  <span class="c1">// Will throw error if not found</span>
+  <span class="nx">screen</span><span class="p">.</span><span class="nx">getByText</span><span class="p">(</span><span class="dl">"</span><span class="s2">Count: 0</span><span class="dl">"</span><span class="p">)</span>
+  <span class="nx">screen</span><span class="p">.</span><span class="nx">getByText</span><span class="p">(</span><span class="dl">"</span><span class="s2">Click me!</span><span class="dl">"</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div></div>
+<p>Above is a very simple test to ensure that our Counter component renders as expected without any user input. Suppose now that we wanted to test user interaction with the page:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">render</span><span class="p">,</span> <span class="nx">fireEvent</span><span class="p">,</span> <span class="nx">screen</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@testing-library/react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">Counter</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Counter</span><span class="dl">'</span>
+<span class="nx">it</span><span class="p">(</span><span class="dl">'</span><span class="s1">correctly renders the updated count after the user clicks the button</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Counter</span> <span class="o">/&gt;</span><span class="p">);</span>
+  <span class="nx">screen</span><span class="p">.</span><span class="nx">getByText</span><span class="p">(</span><span class="dl">"</span><span class="s2">Count: 0</span><span class="dl">"</span><span class="p">)</span>
+  <span class="nx">fireEvent</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="nx">screen</span><span class="p">.</span><span class="nx">getByRole</span><span class="p">(</span><span class="dl">'</span><span class="s1">button</span><span class="dl">'</span><span class="p">))</span>
+  <span class="nx">screen</span><span class="p">.</span><span class="nx">getByText</span><span class="p">(</span><span class="dl">"</span><span class="s2">Count: 1</span><span class="dl">"</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>A full list of testing functions from React Testing Library can be found <a href="https://testing-library.com/docs/dom-testing-library/cheatsheet/">here</a>.</p>
+<h1 id="setting-up-testing-using-vitest-in-vscode">
+  
+  
+    <a href="#setting-up-testing-using-vitest-in-vscode" class="anchor-heading" aria-labelledby="setting-up-testing-using-vitest-in-vscode"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Setting up testing using Vitest in VSCode
+  
+  
+</h1>
+    
+
+<p>Testing can sometimes get cumbersome as the user is expected to remember all the options provided by Vitest to run a specific set of tests, or otherwise the user will have to run the entire test suite just to verify the result of a single test case. Not anymore!</p>
+
+<p>With the official <a href="https://marketplace.visualstudio.com/items?itemName=vitest.explorer">Vitest extension</a>, you have complete control over the way you want to run tests, with many features that visually inform the users about which specific line is failing with what error.</p>
+<h2 id="features">
+  
+  
+    <a href="#features" class="anchor-heading" aria-labelledby="features"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Features
+  
+  
+</h2>
+    
+
+<ul>
+  <li><strong>Run, debug, and watch tests</strong> directly in Visual Studio Code</li>
+  <li><strong>Inline test results</strong> - Show individual pass/fail status next to each test</li>
+  <li><strong>Error highlighting</strong> - Highlights errors next to the <code class="language-plaintext highlighter-rouge">expect</code> functions</li>
+  <li><strong>Inline console.log display</strong> - Console logs appear inline in the editor next to the code that produced them</li>
+  <li><strong>Coverage support</strong> - Run tests with code coverage (requires VS Code &gt;= 1.88)</li>
+  <li><strong>Continuous run mode</strong> - Watch mode for running tests on file changes</li>
+  <li><strong>Test filtering</strong> - Use <code class="language-plaintext highlighter-rouge">@open</code> tag to only show tests open in the editor</li>
+</ul>
+<h2 id="requirements">
+  
+  
+    <a href="#requirements" class="anchor-heading" aria-labelledby="requirements"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Requirements
+  
+  
+</h2>
+    
+
+<ul>
+  <li>Visual Studio Code version &gt;= 1.77.0</li>
+  <li>Vitest version &gt;= v1.4.0</li>
+  <li>Node.js version &gt;= 18.0.0</li>
+</ul>
+<h2 id="installation">
+  
+  
+    <a href="#installation" class="anchor-heading" aria-labelledby="installation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Installation
+  
+  
+</h2>
+    
+<h3 id="direct-installation">
+  
+  
+    <a href="#direct-installation" class="anchor-heading" aria-labelledby="direct-installation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Direct Installation
+  
+  
+</h3>
+    
+
+<ol>
+  <li>Open Visual Studio Code and go to the Extensions tab (<code class="language-plaintext highlighter-rouge">Cmd+Shift+X</code> on macOS, <code class="language-plaintext highlighter-rouge">Ctrl+Shift+X</code> on Windows/Linux).</li>
+  <li>Search for “Vitest” (publisher: “Vitest”).</li>
+  <li>Click “Install”.</li>
+</ol>
+<h3 id="from-visual-studio-marketplace">
+  
+  
+    <a href="#from-visual-studio-marketplace" class="anchor-heading" aria-labelledby="from-visual-studio-marketplace"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> From Visual Studio Marketplace
+  
+  
+</h3>
+    
+
+<ol>
+  <li>Visit <a href="https://marketplace.visualstudio.com/items?itemName=vitest.explorer">Vitest - Visual Studio Marketplace</a> and click “Install”.</li>
+  <li>Allow the browser to open VSCode.</li>
+  <li>Once VSCode is open, click “Install”.</li>
+</ol>
+
+<p>Once installed, the extension should work out of the box without any extra configuration for most projects with Vitest configured.</p>
+<h2 id="verifying-installation">
+  
+  
+    <a href="#verifying-installation" class="anchor-heading" aria-labelledby="verifying-installation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Verifying Installation
+  
+  
+</h2>
+    
+
+<p>After installation (VSCode restart may be required):</p>
+
+<ol>
+  <li>Open the <strong>Testing</strong> view by clicking the flask/beaker icon in the Activity Bar (left sidebar), or open the Command Palette (<code class="language-plaintext highlighter-rouge">Cmd+Shift+P</code> / <code class="language-plaintext highlighter-rouge">Ctrl+Shift+P</code>) and run <strong>“Testing: Focus on Test Explorer View”</strong>.</li>
+  <li>You should see your test files and test suites listed in the Test Explorer.</li>
+  <li>Green checkmarks indicate passing tests, red X marks indicate failures.</li>
+</ol>
+
+<p>If tests don’t appear, open the Command Palette (<code class="language-plaintext highlighter-rouge">Cmd+Shift+P</code> / <code class="language-plaintext highlighter-rouge">Ctrl+Shift+P</code>) and run <strong>“Vitest: Start All Runners”</strong>.</p>
+<h2 id="project-configuration">
+  
+  
+    <a href="#project-configuration" class="anchor-heading" aria-labelledby="project-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Project Configuration
+  
+  
+</h2>
+    
+
+<p>For the extension to work, your project needs Vitest configured. Create a <code class="language-plaintext highlighter-rouge">vitest.config.ts</code> file in your project root:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vitest/config</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">defineConfig</span><span class="p">({</span>
+  <span class="na">test</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">globals</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">environment</span><span class="p">:</span> <span class="dl">'</span><span class="s1">node</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">include</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}</span><span class="dl">'</span><span class="p">],</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Add test scripts in your <code class="language-plaintext highlighter-rouge">package.json</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vitest"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"test:watch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vitest --watch"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"test:coverage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vitest --coverage"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h2 id="using-the-extension">
+  
+  
+    <a href="#using-the-extension" class="anchor-heading" aria-labelledby="using-the-extension"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Using the Extension
+  
+  
+</h2>
+    
+<h3 id="running-tests-from-the-testing-view">
+  
+  
+    <a href="#running-tests-from-the-testing-view" class="anchor-heading" aria-labelledby="running-tests-from-the-testing-view"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Running Tests from the Testing View
+  
+  
+</h3>
+    
+
+<p>The Testing view in the sidebar provides a tree view of all your tests:</p>
+
+<ul>
+  <li><strong>Run All Tests</strong>: Click the play button at the top to run all tests</li>
+  <li><strong>Run Single Test/Suite</strong>: Hover over a test or suite and click the play button</li>
+  <li><strong>Run Tests with Coverage</strong>: Click the coverage icon to run tests with code coverage</li>
+  <li><strong>Continuous Run</strong>: Click the “eye” icon to enable watch mode - tests will rerun when files change</li>
+</ul>
+<h3 id="running-tests-from-test-files">
+  
+  
+    <a href="#running-tests-from-test-files" class="anchor-heading" aria-labelledby="running-tests-from-test-files"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Running Tests from Test Files
+  
+  
+</h3>
+    
+
+<p>When viewing a test file, you’ll see icons in the gutter (left margin) next to each test:</p>
+
+<ul>
+  <li><strong>Click the icon</strong> to run that specific test</li>
+  <li><strong>Right-click the icon</strong> for more options:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Run Test</code> - Execute the test</li>
+      <li><code class="language-plaintext highlighter-rouge">Debug Test</code> - Start a debugging session</li>
+      <li><code class="language-plaintext highlighter-rouge">Run with Coverage</code> - Run with code coverage</li>
+      <li><code class="language-plaintext highlighter-rouge">Reveal in Test Explorer</code> - Find the test in the Testing view</li>
+    </ul>
+  </li>
+</ul>
+<h3 id="keyboard-shortcuts">
+  
+  
+    <a href="#keyboard-shortcuts" class="anchor-heading" aria-labelledby="keyboard-shortcuts"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Keyboard Shortcuts
+  
+  
+</h3>
+    
+
+<p>VS Code provides testing commands you can access via the Command Palette (<code class="language-plaintext highlighter-rouge">Cmd+Shift+P</code> / <code class="language-plaintext highlighter-rouge">Ctrl+Shift+P</code>):</p>
+
+<ul>
+  <li><strong>Test: Run All Tests</strong> - Run all tests in the workspace</li>
+  <li><strong>Test: Run Test at Cursor</strong> - Run the test at the current cursor position</li>
+  <li><strong>Test: Rerun Last Run</strong> - Re-run the last executed tests</li>
+  <li><strong>Test: Debug Test at Cursor</strong> - Debug the test at the current cursor position</li>
+</ul>
+
+<p>You can also view and customize keyboard shortcuts for these commands by opening the Keyboard Shortcuts editor (<code class="language-plaintext highlighter-rouge">Cmd+K Cmd+S</code> / <code class="language-plaintext highlighter-rouge">Ctrl+K Ctrl+S</code>) and searching for “test”.</p>
+<h2 id="debugging-tests">
+  
+  
+    <a href="#debugging-tests" class="anchor-heading" aria-labelledby="debugging-tests"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Debugging Tests
+  
+  
+</h2>
+    
+
+<p>The Vitest extension makes debugging tests straightforward:</p>
+
+<ol>
+  <li>
+    <p><strong>Set Breakpoints</strong>: Click in the gutter (left of line numbers) to set breakpoints in your test or source code.</p>
+  </li>
+  <li><strong>Start Debugging</strong>:
+    <ul>
+      <li>Right-click on the test icon in the gutter and select “Debug Test”</li>
+      <li>Or hover over a test in the Testing view and click the debug icon (bug icon)</li>
+    </ul>
+  </li>
+  <li><strong>Use the Debugger</strong>: When the debugger pauses at a breakpoint:
+    <ul>
+      <li>Hover over variables to see their values</li>
+      <li>Use the Debug Console to evaluate expressions</li>
+      <li>Step through code using the debug toolbar (Step Over, Step Into, Step Out)</li>
+    </ul>
+  </li>
+  <li><strong>Debug Configuration</strong>: The extension automatically configures debugging. If you need custom settings, you can modify these in your VS Code settings:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">vitest.debuggerPort</code> - Port for the debugger (default: 9229)</li>
+      <li><code class="language-plaintext highlighter-rouge">vitest.debugExclude</code> - Glob patterns to exclude from debugging</li>
+    </ul>
+  </li>
+</ol>
+<h2 id="extension-settings">
+  
+  
+    <a href="#extension-settings" class="anchor-heading" aria-labelledby="extension-settings"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Extension Settings
+  
+  
+</h2>
+    
+
+<p>You can customize the extension behavior in VS Code settings (<code class="language-plaintext highlighter-rouge">Cmd+,</code> / <code class="language-plaintext highlighter-rouge">Ctrl+,</code>):</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Setting</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">vitest.rootConfig</code></td>
+      <td>Path to your Vitest config file</td>
+      <td>Auto-detected</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">vitest.nodeExecutable</code></td>
+      <td>Path to Node.js executable</td>
+      <td>Auto-detected</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">vitest.showImportsDuration</code></td>
+      <td>Show module import times</td>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">vitest.applyDiagnostic</code></td>
+      <td>Show error squiggly lines</td>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="for-monorepo-projects">
+  
+  
+    <a href="#for-monorepo-projects" class="anchor-heading" aria-labelledby="for-monorepo-projects"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> For Monorepo Projects
+  
+  
+</h3>
+    
+
+<p>If you’re working with a monorepo, configure a <a href="https://vitest.dev/guide/workspace">Vitest workspace</a>:</p>
+
+<ol>
+  <li>Create a <code class="language-plaintext highlighter-rouge">vitest.workspace.ts</code> file at the root:</li>
+</ol>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">defineWorkspace</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vitest/config</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">defineWorkspace</span><span class="p">([</span>
+  <span class="dl">'</span><span class="s1">packages/*/vitest.config.ts</span><span class="dl">'</span><span class="p">,</span>
+<span class="p">]);</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Set the workspace config in VS Code settings:
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"vitest.workspaceConfig"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./vitest.workspace.ts"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ol>
+<h2 id="troubleshooting">
+  
+  
+    <a href="#troubleshooting" class="anchor-heading" aria-labelledby="troubleshooting"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Troubleshooting
+  
+  
+</h2>
+    
+
+<p><strong>Tests not appearing in Test Explorer:</strong></p>
+<ul>
+  <li>Ensure Vitest is installed (<code class="language-plaintext highlighter-rouge">npm install -D vitest</code>)</li>
+  <li>Check that your config file is named correctly (<code class="language-plaintext highlighter-rouge">vitest.config.ts</code> or <code class="language-plaintext highlighter-rouge">vite.config.ts</code>)</li>
+  <li>Run “Vitest: Start All Runners” from the Command Palette</li>
+</ul>
+
+<p><strong>Extension not finding Vitest:</strong></p>
+<ul>
+  <li>Set <code class="language-plaintext highlighter-rouge">vitest.vitestPackagePath</code> to the path of Vitest’s <code class="language-plaintext highlighter-rouge">package.json</code> in your <code class="language-plaintext highlighter-rouge">node_modules</code></li>
+</ul>
+
+<p><strong>Debugging not working:</strong></p>
+<ul>
+  <li>Ensure source maps are enabled in your config</li>
+  <li>Check that the <code class="language-plaintext highlighter-rouge">vitest.debuggerPort</code> is not in use</li>
+</ul>
+<h1 id="general-guidelines-for-writing-tests">
+  
+  
+    <a href="#general-guidelines-for-writing-tests" class="anchor-heading" aria-labelledby="general-guidelines-for-writing-tests"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> General Guidelines For Writing Tests
+  
+  
+</h1>
+    
+
+<blockquote>
+  <p><strong><em>Note:</em> The following will be used as a reference when grading assignments.</strong></p>
+</blockquote>
+
+<ol>
+  <li>Tests should be hermetic.
+    <ul>
+      <li>Reduce flakiness.</li>
+      <li>Flaky tests are those that fail intermittently:
+        <ul>
+          <li>Nondeterminism (e.g., hash codes, random numbers);</li>
+          <li>Timing issues (e.g., threads, network).</li>
+          <li>Availability of Resources</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Tests should be clear.
+    <ul>
+      <li>After failure, should be clear what went wrong.</li>
+    </ul>
+  </li>
+  <li>Tests should be scoped as small as possible.
+    <ul>
+      <li>Faster and more reliable.</li>
+    </ul>
+  </li>
+  <li>Tests should make calls against public APIs.
+    <ul>
+      <li>Or they become brittle</li>
+      <li>Brittle tests are those that are not self-contained:
+        <ul>
+          <li>Ordering of tests (e.g., assume prior state)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<blockquote>
+  <p><strong><em>Note:</em> The following will not be used as a reference when grading assignments. But you should try following these guidelines as much as you can.</strong></p>
+</blockquote>
+
+<ol>
+  <li>Write tests based on the expected behavior, not based on the interpretation/implementation of it.</li>
+  <li>Test assertion (expect) should match the test description.</li>
+  <li>Each spec should test only 1 thing (preferably with 1 assertion per test).</li>
+  <li>Organize tests using suites (i.e. each method has its own suite).</li>
+  <li>Use setup and teardown functions to reduce code duplicity.</li>
+  <li>Code duplicity in tests is preferred over complicated logic to reduce it.
+    <ul>
+      <li>If your tests need tests, they have no value.</li>
+    </ul>
+  </li>
+  <li>Cover the happy path for your code first.
+    <ul>
+      <li>Follow up with edge cases.</li>
+      <li>End with error scenarios.</li>
+    </ul>
+  </li>
+  <li>Mock/Stub all external dependencies.
+    <ul>
+      <li>Clear the mocks after each test.</li>
+    </ul>
+  </li>
+  <li>If large test data is being used, ensure clean-up after tests to prevent memory leaks.</li>
+  <li>Code coverage is a deceptive measure. 100% coverage does not mean 100% tested code.</li>
+  <li>A well designed test suite improves the quality and reliability of code.</li>
+</ol>
+
+          
+
+          
+            
+          
+        </main>
+        
+<hr>
+<footer>
+  
+
+  <p class="text-small mb-0">&copy; 2026 Adeel Bhutta and Mitch Wand. Released under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license</p>
+
+  <div class="d-md-none mt-4 fs-2">
+    
+    
+      This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    
+  </div>
+</footer>
+
+      </div>
+    </div>
+    
+      
+
+<div class="search-overlay"></div>
+
+    
+  </div>
+
+  
+</body>
+</html>
+
