@@ -102,7 +102,7 @@ posters:
 ip1:
   name: Individual Project 1
   type: deadline
-  page: 
+  page: /assignments/ip1
 ip2:
   name: Individual Project 2 
   type: deadline
