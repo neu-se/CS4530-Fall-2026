@@ -43,7 +43,7 @@ For detailed instructions with screenshots, see the [Pawtograder Student Guide](
 
 You'll need to start by [setting up your development environment]({{site.baseurl}}{% link tutorials/week1-getting-started.md %}), including node.js and npm.
 
-Next, make sure you have used Git to clone the starter code. This code is divided into 3 main directories: client, server, and shared. These are connected in a single [NPM workspace](https://docs.npmjs.com/cli/v7/using-npm/workspaces), but you shouldn’t have to worry much about what that means. If you are new to Git, you may want to review ["Learning Basics of Git"](learning-github.md) first! We expect all students to be able to use add/commit/push for their work.
+Next, make sure you have used Git to clone the starter code. This code is divided into 3 main directories: client, server, and shared. These are connected in a single [NPM workspace](https://docs.npmjs.com/cli/v7/using-npm/workspaces), but you shouldn’t have to worry much about what that means. If you are new to Git, you may want to review ["Learning Basics of Git"]({{site.baseurl}}{% link Assignments/ip1/learning-github.md %}) first! We expect all students to be able to use add/commit/push for their work.
 
 After that, follow the following steps:
 
