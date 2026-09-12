@@ -2,6 +2,6 @@
 name: Mohammadsaleh Khatri 
 role: Teaching Assistant
 email: khatri.mo@northeastern.edu
-photo: 
+photo: staff/saleh_khatri.png
 
 ---
