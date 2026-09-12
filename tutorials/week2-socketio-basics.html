@@ -1,0 +1,747 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <link rel="stylesheet" href="/CS4530-Fall-2026/assets/css/just-the-docs-default.css">
+
+  <link rel="stylesheet" href="/CS4530-Fall-2026/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+
+  <style id="jtd-nav-activation">
+  
+
+    .site-nav > ul.nav-list:first-child > li > a,
+    
+    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(6)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:not(:first-child) a,
+    .site-nav li.external a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(6) > a {
+      font-weight: 600;
+      text-decoration: none;
+    }.site-nav > ul.nav-list:first-child > li:nth-child(4) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(4) > ul > li:nth-child(6) > button svg {
+      transform: rotate(-90deg);
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(4) > ul.nav-list > li.nav-list-item:nth-child(6) > ul.nav-list {
+      display: block;
+    }
+  </style>
+
+  
+
+  
+    <script src="/CS4530-Fall-2026/assets/js/vendor/lunr.min.js"></script>
+  
+
+  <script src="/CS4530-Fall-2026/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+
+
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Socket.IO Tutorial | CS4530, Fall 2026</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Socket.IO Tutorial" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Northeastern University CS 4530 “Fundamentals of Software Engineering”, Fall 2026. Professors Adeel Bhutta and Mitch Wand." />
+<meta property="og:description" content="Northeastern University CS 4530 “Fundamentals of Software Engineering”, Fall 2026. Professors Adeel Bhutta and Mitch Wand." />
+<link rel="canonical" href="https://neu-se.github.io/CS4530-Fall-2026/tutorials/week2-socketio-basics" />
+<meta property="og:url" content="https://neu-se.github.io/CS4530-Fall-2026/tutorials/week2-socketio-basics" />
+<meta property="og:site_name" content="CS4530, Fall 2026" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Socket.IO Tutorial" />
+<script type="application/ld+json">
+{"description":"Northeastern University CS 4530 “Fundamentals of Software Engineering”, Fall 2026. Professors Adeel Bhutta and Mitch Wand.","headline":"Socket.IO Tutorial","url":"https://neu-se.github.io/CS4530-Fall-2026/tutorials/week2-socketio-basics","@type":"WebPage","dateModified":"2026-09-12T01:55:07+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+</head>
+
+<body>
+  <a class="skip-to-main" href="#main-content">Skip to main content</a>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="svg-link" viewBox="0 0 24 24">
+  <title>Link</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+  </svg>
+</symbol>
+
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+  <title>Menu</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+    <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</symbol>
+
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+  <title>Expand</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+</symbol>
+
+  <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE -->
+<symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+  <title id="svg-external-link-title">(external link)</title>
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+</symbol>
+
+  
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+  <title>Document</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+  </svg>
+</symbol>
+
+    <symbol id="svg-search" viewBox="0 0 24 24">
+  <title>Search</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</symbol>
+
+  
+  
+    <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md -->
+<symbol id="svg-copy" viewBox="0 0 16 16">
+  <title>Copy</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg>
+</symbol>
+<symbol id="svg-copied" viewBox="0 0 16 16">
+  <title>Copied</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/>
+  </svg>
+</symbol>
+
+  
+</svg>
+
+  
+    <header class="side-bar">
+  <div class="site-header">
+    <a href="/CS4530-Fall-2026/" class="site-title lh-tight">
+  CS4530, Fall 2026
+
+</a>
+    <button id="menu-button" class="site-button btn-reset" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
+    </button>
+  </div>
+
+  <nav aria-label="Main" id="site-nav" class="site-nav">
+  
+  
+    <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Calendar submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/calendar/" class="nav-list-link">Calendar</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s1" class="nav-list-link">Section 1 - Calendar</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s2" class="nav-list-link">Section 2 - Calendar</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s5" class="nav-list-link">Section 5 - Calendar</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s12" class="nav-list-link">Section 12 - Calendar</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Modules submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/modules/" class="nav-list-link">Modules</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/1-user-stories" class="nav-list-link">1 - Orientation & User Stories</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/2-requirements-to-tests" class="nav-list-link">2 - From Requirements to Tests</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/3-test-adequacy" class="nav-list-link">3 - Test Adequacy</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/4-web-apps" class="nav-list-link">4 - Design Patterns for Web Applications</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Assignments submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/assignments/" class="nav-list-link">Assignments</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/ip1" class="nav-list-link">Individual Project 1</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/project-overview" class="nav-list-link">Project Overview</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Tutorials submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/tutorials/" class="nav-list-link">Tutorials</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-getting-started" class="nav-list-link">Installing a Development Environment</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-typescript-basics" class="nav-list-link">TypeScript Basics</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-unit-testing" class="nav-list-link">Unit Testing with Vitest</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-apirequests" class="nav-list-link">Guide to API Requests</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week2-keyv" class="nav-list-link">Simple Storage with Keyv</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week2-socketio-basics" class="nav-list-link">Socket.IO Tutorial</a></li></ul></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/textbooks/" class="nav-list-link">Textbooks</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/staff/" class="nav-list-link">Staff</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Policies submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/policies/" class="nav-list-link">Policies</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/policies/ai" class="nav-list-link">Policy on Use of AI</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/policies/style/" class="nav-list-link">Code Style</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/policies/debugging/" class="nav-list-link">Debugging</a></li></ul></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/resources/" class="nav-list-link">Other Resources</a></li></ul>
+  
+</nav>
+
+
+<div class="d-md-block d-none site-footer">
+  
+  
+    This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+  
+  </div>
+</header>
+
+  
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+  
+    
+
+<div class="search" role="search">
+  <div class="search-input-wrap">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search CS4530, Fall 2026" autocomplete="off">
+    <label for="search-input" class="search-label">
+      <span class="sr-only">Search CS4530, Fall 2026</span>
+      <svg viewBox="0 0 24 24" class="search-icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg>
+    </label>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+  
+  
+  
+</div>
+
+    <div class="main-content-wrap">
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb-nav-list">
+    <li class="breadcrumb-nav-list-item"><a href="/CS4530-Fall-2026/tutorials/">Tutorials</a></li>
+    <li class="breadcrumb-nav-list-item"><span>Socket.IO Tutorial</span></li>
+  </ol>
+</nav>
+
+
+      <div id="main-content" class="main-content">
+        <main>
+          
+            <div class="fs-1 text-right fw-300">Last updated: Sep 12, 26 01:55 UTC | <a href="/CS4530-Fall-2026/tutorials/week2-socketio-basics">Permalink</a></div>
+
+<p>This tutorial covers the basic concepts of Socket.IO. By the end, you’ll understand when sockets are useful, and how to emit and listen for events for real‑time updates.</p>
+<h2 id="contents">
+  
+  
+    <a href="#contents" class="anchor-heading" aria-labelledby="contents"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Contents
+  
+  
+</h2>
+    
+<ul>
+  <li><a href="#what-is-socketio">What is Socket.IO</a>
+    <ul>
+      <li><a href="#what-problem-does-socketio-solve">What problem does Socket.IO solve?</a></li>
+      <li><a href="#how-does-it-work">How Does It Work?</a></li>
+      <li><a href="#socketio-vs-rest-apis">Socket.IO vs. REST APIs</a></li>
+      <li><a href="#example-uses">Example Uses</a></li>
+    </ul>
+  </li>
+  <li><a href="#using-socketio">Using Socket.IO</a>
+    <ul>
+      <li><a href="#starter-files-express-5--ts-esm">Starter Files (Express 5 + TS ESM)</a></li>
+      <li><a href="#setting-up-a-new-project">Setting Up a New Project</a></li>
+      <li><a href="#emitting-and-receiving-socket-events">Emitting &amp; Receiving Socket Events</a></li>
+      <li><a href="#putting-it-all-together">Putting It All Together</a></li>
+      <li><a href="#troubleshooting">Troubleshooting</a></li>
+    </ul>
+  </li>
+  <li><a href="#useful-resources">Useful Resources</a></li>
+</ul>
+<h1 id="what-is-socketio">
+  
+  
+    <a href="#what-is-socketio" class="anchor-heading" aria-labelledby="what-is-socketio"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> What is Socket.IO?
+  
+  
+</h1>
+    
+<p>Socket.IO is a library that enables real‑time, bidirectional, persistent communication between client(s) and server(s). <strong>Bidirectional</strong> means both the client and server can send messages at any time. These features make Socket.IO ideal for live dashboards, chats, multiplayer games, and collaborative tools.</p>
+<h2 id="what-problem-does-socketio-solve">
+  
+  
+    <a href="#what-problem-does-socketio-solve" class="anchor-heading" aria-labelledby="what-problem-does-socketio-solve"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> What problem does Socket.IO solve?
+  
+  
+</h2>
+    
+
+<p>With normal HTTP, communication is request–response. The client asks the server for data, the server responds, and the connection closes. If something changes on the server, the client won’t know unless it asks again.
+Socket.IO keeps a persistent connection open between the client and the server. This lets the server push updates to the client the moment something changes, without waiting for a new request.
+This is what makes real-time features possible, like live chat messages, shared cursors in a collaborative editor, multiplayer game updates, or dashboards that update instantly when new data arrives.</p>
+<h2 id="how-does-it-work">
+  
+  
+    <a href="#how-does-it-work" class="anchor-heading" aria-labelledby="how-does-it-work"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> How Does It Work?
+  
+  
+</h2>
+    
+<p>Socket.IO uses a listener-based event model.</p>
+
+<p>When you call <code class="language-plaintext highlighter-rouge">.on(...)</code>, you are <strong>registering a listener</strong> for a specific event. That listener will run every time the event occurs.</p>
+
+<p>When you call <code class="language-plaintext highlighter-rouge">.emit(...)</code>, you are <strong>sending an event</strong> with some data. Any listeners registered for that event will be notified and receive the data.</p>
+
+<p>In practice, this means:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">.on(event, handler)</code> sets up code that waits for something to happen</li>
+  <li><code class="language-plaintext highlighter-rouge">.emit(event, data)</code> triggers that event and passes data to all listeners</li>
+</ul>
+
+<p>Under the hood, Socket.IO uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API">WebSockets</a> (with fallbacks) to maintain a persistent connection.
+If this feels familiar, it’s because Socket.IO follows the same idea as the observer/listener pattern, which we’ll revisit later in the course.</p>
+<h2 id="socketio-vs-rest-apis">
+  
+  
+    <a href="#socketio-vs-rest-apis" class="anchor-heading" aria-labelledby="socketio-vs-rest-apis"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Socket.IO vs. REST APIs
+  
+  
+</h2>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Socket.IO</th>
+      <th>REST API</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Design Pattern</strong></td>
+      <td>Bidirectional, Publisher–Subscriber</td>
+      <td>Request–Response, client‑initiated</td>
+    </tr>
+    <tr>
+      <td><strong>Connection</strong></td>
+      <td>Persistent (WebSocket or fallback)</td>
+      <td>Per‑request (HTTP)</td>
+    </tr>
+    <tr>
+      <td><strong>Use Cases</strong></td>
+      <td>Real‑time, low‑latency updates</td>
+      <td>CRUD, on‑demand data fetch</td>
+    </tr>
+    <tr>
+      <td><strong>Data Flow</strong></td>
+      <td>Either side can send anytime</td>
+      <td>Client pulls; server responds</td>
+    </tr>
+    <tr>
+      <td><strong>Statefulness</strong></td>
+      <td>Often stateful</td>
+      <td>Stateless</td>
+    </tr>
+  </tbody>
+</table></div>
+<h2 id="example-uses">
+  
+  
+    <a href="#example-uses" class="anchor-heading" aria-labelledby="example-uses"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Example Uses:
+  
+  
+</h2>
+    
+
+<p>Socket.IO is great for any use case where real-time updates are essential, or when the client and server need continuous communication. A few examples are:</p>
+
+<ol>
+  <li>
+    <p><strong>Chat Room</strong> – This is a simple use case outlined in the documentation (linked <a href="#useful-resources">below</a>). Users need to send and receive messages in real time, instantly. With Socket.IO, the user can emit a message to the server, which then broadcasts it to the other connected users. If you were to use a REST API here, there would be a lot of overhead and latency in sending/receiving messages due to the need for constant requests to the API.</p>
+  </li>
+  <li>
+    <p><strong>Multiplayer Games</strong> – Real-time game state sharing with low latency is essential for smooth multiplayer gameplay. By emitting socket events with the updated game state, you can ensure that all connected player clients have the same synchronized copy of the game state to display.</p>
+  </li>
+  <li>
+    <p><strong>Collaborative Tools</strong> – For applications like collaborative text editors or whiteboards, sockets can help keep the state synchronized across clients. When a user makes a change, the change will be emitted to the server, which may internally update the “source of truth” (i.e. the most reliable, accurate, and centralized location for critical data) for the application. Then, the updated state would be emitted to all other connected clients, so that everyone sees the edits in real time.</p>
+  </li>
+</ol>
+<h3 id="client-vs-server-who-does-what">
+  
+  
+    <a href="#client-vs-server-who-does-what" class="anchor-heading" aria-labelledby="client-vs-server-who-does-what"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Client vs Server: who does what?
+  
+  
+</h3>
+    
+
+<p>In a Socket.IO application, the client and server have different responsibilities.</p>
+
+<ul>
+  <li>The <strong>client</strong> emits events when a user does something, such as clicking a button, submitting a form, or typing a message.</li>
+  <li>The <strong>server</strong> listens for those events, decides what should happen next, and chooses what information to send back and to which clients.</li>
+</ul>
+
+<p>For example, in a chat app:</p>
+<ul>
+  <li>The client emits a <code class="language-plaintext highlighter-rouge">chat message</code> event when a user sends a message</li>
+  <li>The server receives it and broadcasts the message to other connected clients</li>
+</ul>
+
+<p>Keeping this separation clear will matter more as we introduce rooms, namespaces, and multiple connected users.</p>
+<h1 id="using-socketio">
+  
+  
+    <a href="#using-socketio" class="anchor-heading" aria-labelledby="using-socketio"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Using Socket.IO
+  
+  
+</h1>
+    
+<h2 id="starter-files-express-5--ts-esm">
+  
+  
+    <a href="#starter-files-express-5--ts-esm" class="anchor-heading" aria-labelledby="starter-files-express-5--ts-esm"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Starter Files (Express 5 + TS ESM)
+  
+  
+</h2>
+    
+<blockquote>
+  <p><strong>Why this section?</strong> The previous tutorial let learners install packages ad‑hoc, which pulled the latest Express (v5) but showed code written for older setups. To avoid version mismatches, start from the following files and then run <code class="language-plaintext highlighter-rouge">npm install</code>.</p>
+</blockquote>
+
+<p>Create the four files below in your project root:</p>
+<h3 id="indexhtml">
+  
+  
+    <a href="#indexhtml" class="anchor-heading" aria-labelledby="indexhtml"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <code class="language-plaintext highlighter-rouge">index.html</code>
+  
+  
+</h3>
+    
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Socket.IO Tutorial<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/socket.io/socket.io.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Hello Socket.IO!<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;script&gt;</span>
+      <span class="kd">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">();</span>
+      <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">connect</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Connected to the server</span><span class="dl">"</span><span class="p">));</span>
+      <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">disconnect</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Disconnected from the server</span><span class="dl">"</span><span class="p">));</span>
+    <span class="nt">&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+<h3 id="packagejson">
+  
+  
+    <a href="#packagejson" class="anchor-heading" aria-labelledby="packagejson"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <code class="language-plaintext highlighter-rouge">package.json</code>
+  
+  
+</h3>
+    
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"socketio-tutorial"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"index.js"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"module"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"dev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ts-node --esm server.ts"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"keywords"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ISC"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"express"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^5.1.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"socket.io"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^4.8.1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"@types/express"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^5.0.3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"@types/node"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^22.5.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"@types/socket.io"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^3.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ts-node"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^10.9.2"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typescript"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^5.9.2"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <p>Notes:</p>
+  <ul>
+    <li>We keep <strong>Express 5</strong> and <strong>Socket.IO 4</strong> pinned here.</li>
+    <li>We run in <strong>ESM</strong> mode and use <code class="language-plaintext highlighter-rouge">ts-node --esm</code> for development.</li>
+  </ul>
+</blockquote>
+<h3 id="tsconfigjson">
+  
+  
+    <a href="#tsconfigjson" class="anchor-heading" aria-labelledby="tsconfigjson"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <code class="language-plaintext highlighter-rouge">tsconfig.json</code>
+  
+  
+</h3>
+    
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"compilerOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es2022"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nodenext"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"moduleResolution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nodenext"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lib"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"es2022"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"node"</span><span class="p">],</span><span class="w">
+
+    </span><span class="nl">"strict"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"skipLibCheck"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"esModuleInterop"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"forceConsistentCasingInFileNames"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"include"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"./**/*.ts"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"exclude"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"node_modules"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<h3 id="serverts">
+  
+  
+    <a href="#serverts" class="anchor-heading" aria-labelledby="serverts"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <code class="language-plaintext highlighter-rouge">server.ts</code>
+  
+  
+</h3>
+    
+<blockquote>
+  <p><strong>Important:</strong> In ESM, <code class="language-plaintext highlighter-rouge">__dirname</code> is not defined. Use <code class="language-plaintext highlighter-rouge">import.meta.url</code> to derive it.</p>
+</blockquote>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">express</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">express</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="kd">type</span> <span class="p">{</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">Response</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">express</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">http</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">http</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Server</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">socket.io</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="kd">type</span> <span class="p">{</span> <span class="nx">Socket</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">socket.io</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">fileURLToPath</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">dirname</span><span class="p">,</span> <span class="nx">join</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">path</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">__filename</span> <span class="o">=</span> <span class="nx">fileURLToPath</span><span class="p">(</span><span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">__dirname</span> <span class="o">=</span> <span class="nx">dirname</span><span class="p">(</span><span class="nx">__filename</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">io</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Server</span><span class="p">(</span><span class="nx">server</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">:</span> <span class="nx">Request</span><span class="p">,</span> <span class="nx">res</span><span class="p">:</span> <span class="nx">Response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">sendFile</span><span class="p">(</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="dl">"</span><span class="s2">index.html</span><span class="dl">"</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">connection</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">socket</span><span class="p">:</span> <span class="nx">Socket</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">A user connected</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">disconnect</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">A user disconnected</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">PORT</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">;</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">PORT</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Server is running on http://localhost:</span><span class="p">${</span><span class="nx">PORT</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+<h2 id="setting-up-a-new-project">
+  
+  
+    <a href="#setting-up-a-new-project" class="anchor-heading" aria-labelledby="setting-up-a-new-project"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Setting Up a New Project
+  
+  
+</h2>
+    
+<ol>
+  <li><strong>Create a project and add the files</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>socketio-tutorial <span class="o">&amp;&amp;</span> <span class="nb">cd </span>socketio-tutorial
+<span class="c"># Create index.html, package.json, tsconfig.json, server.ts exactly as above</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Install packages</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Run the dev server</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run dev
+</code></pre></div>    </div>
+  </li>
+  <li>Open <code class="language-plaintext highlighter-rouge">http://localhost:3000</code> to see a page with a ‘Hello Socket.IO!’ message. You can check your terminal for the connection logs. Opening and closing the tab/browser will show connection and disconnection logs respectively.</li>
+</ol>
+<h2 id="emitting-and-receiving-socket-events">
+  
+  
+    <a href="#emitting-and-receiving-socket-events" class="anchor-heading" aria-labelledby="emitting-and-receiving-socket-events"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Emitting and Receiving Socket Events
+  
+  
+</h2>
+    
+<h3 id="1-creating-sockets-on-client-and-server">
+  
+  
+    <a href="#1-creating-sockets-on-client-and-server" class="anchor-heading" aria-labelledby="1-creating-sockets-on-client-and-server"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1) Creating sockets on client and server
+  
+  
+</h3>
+    
+<p><strong>Client (in <code class="language-plaintext highlighter-rouge">index.html</code>):</strong></p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+  <span class="kd">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">();</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">connect</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Connected</span><span class="dl">"</span><span class="p">));</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+<p><strong>Server (in <code class="language-plaintext highlighter-rouge">server.ts</code>):</strong></p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">connection</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">A user connected</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+<h3 id="2-emitting-a-custom-event">
+  
+  
+    <a href="#2-emitting-a-custom-event" class="anchor-heading" aria-labelledby="2-emitting-a-custom-event"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 2) Emitting a custom event
+  
+  
+</h3>
+    
+<p><strong>Client → Server:</strong></p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+  <span class="c1">// Send a chat message</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="dl">"</span><span class="s2">chat message</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="na">user</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span> <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+<p><strong>Server listens:</strong></p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">connection</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">chat message</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="na">data</span><span class="p">:</span> <span class="p">{</span> <span class="na">user</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span> <span class="nl">message</span><span class="p">:</span> <span class="kr">string</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">user</span><span class="p">}</span><span class="s2">: </span><span class="p">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
+<h3 id="3-broadcasting-to-all-clients">
+  
+  
+    <a href="#3-broadcasting-to-all-clients" class="anchor-heading" aria-labelledby="3-broadcasting-to-all-clients"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 3) Broadcasting to all clients
+  
+  
+</h3>
+    
+<p><strong>Server → All clients:</strong></p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="dl">"</span><span class="s2">chat message</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="na">user</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Server</span><span class="dl">"</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Welcome to the chat!</span><span class="dl">"</span> <span class="p">});</span>
+</code></pre></div></div>
+<p><strong>Client listens:</strong></p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">chat message</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">user</span><span class="p">}</span><span class="s2">: </span><span class="p">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+<h2 id="putting-it-all-together">
+  
+  
+    <a href="#putting-it-all-together" class="anchor-heading" aria-labelledby="putting-it-all-together"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Putting It All Together
+  
+  
+</h2>
+    
+<p><strong>Server (<code class="language-plaintext highlighter-rouge">server.ts</code>):</strong></p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">io</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">connection</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">socket</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">A user connected</span><span class="dl">"</span><span class="p">);</span>
+
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">chat message</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="na">data</span><span class="p">:</span> <span class="p">{</span> <span class="na">user</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span> <span class="nl">message</span><span class="p">:</span> <span class="kr">string</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// Re-broadcast to everyone</span>
+    <span class="nx">io</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="dl">"</span><span class="s2">chat message</span><span class="dl">"</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">disconnect</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">A user disconnected</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p><strong>Client (<code class="language-plaintext highlighter-rouge">index.html</code>):</strong></p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+  <span class="kd">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="nx">io</span><span class="p">();</span>
+
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">"</span><span class="s2">chat message</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">user</span><span class="p">}</span><span class="s2">: </span><span class="p">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="c1">// Example: immediately emit something</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="dl">"</span><span class="s2">chat message</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="na">user</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span> <span class="na">message</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span> <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+<h2 id="common-mistakes">
+  
+  
+    <a href="#common-mistakes" class="anchor-heading" aria-labelledby="common-mistakes"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Common Mistakes
+  
+  
+</h2>
+    
+
+<ul>
+  <li>
+    <p><strong>Static files not being served</strong><br />
+Make sure your Express server is serving <code class="language-plaintext highlighter-rouge">index.html</code>. If the browser loads but the socket never connects, this is often the issue.</p>
+  </li>
+  <li>
+    <p><strong>Mismatched Socket.IO versions</strong><br />
+The Socket.IO client and server must use compatible versions. Always install dependencies using the provided <code class="language-plaintext highlighter-rouge">package.json</code>.</p>
+  </li>
+  <li>
+    <p><strong>Using <code class="language-plaintext highlighter-rouge">io.emit</code> vs <code class="language-plaintext highlighter-rouge">socket.emit</code> incorrectly</strong></p>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">socket.emit(...)</code> sends a message to a single connected client</li>
+      <li><code class="language-plaintext highlighter-rouge">io.emit(...)</code> broadcasts a message to all connected clients</li>
+    </ul>
+  </li>
+</ul>
+<h2 id="troubleshooting">
+  
+  
+    <a href="#troubleshooting" class="anchor-heading" aria-labelledby="troubleshooting"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Troubleshooting
+  
+  
+</h2>
+    
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">ReferenceError: __dirname is not defined</code></strong> — You’re in ESM. Use the <code class="language-plaintext highlighter-rouge">fileURLToPath(import.meta.url)</code> pattern shown above.</li>
+  <li><strong>Type errors for Node globals</strong> — Install <code class="language-plaintext highlighter-rouge">@types/node</code> (already listed) and ensure <code class="language-plaintext highlighter-rouge">"types": ["node"]</code> is set in <code class="language-plaintext highlighter-rouge">tsconfig.json</code>.</li>
+  <li><strong>Wrong Express/Socket.IO versions</strong> — Don’t install ad‑hoc. Use the provided <code class="language-plaintext highlighter-rouge">package.json</code> and run <code class="language-plaintext highlighter-rouge">npm install</code> so versions match this tutorial.</li>
+</ul>
+<h1 id="useful-resources">
+  
+  
+    <a href="#useful-resources" class="anchor-heading" aria-labelledby="useful-resources"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Useful Resources
+  
+  
+</h1>
+    
+<ul>
+  <li><a href="https://socket.io/docs/">Socket.IO Introduction (Documentation)</a></li>
+  <li><a href="https://socket.io/docs/v4/tutorial/introduction">Socket.IO Chat App Tutorial (Documentation)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=ZKEqqIO7n-k">Learn Socket.io In 30 Minutes – Web Dev Simplified</a></li>
+  <li><a href="https://socket.io/docs/v3/testing/">How to test Socket.io</a></li>
+</ul>
+
+          
+
+          
+            
+          
+        </main>
+        
+<hr>
+<footer>
+  
+
+  <p class="text-small mb-0">&copy; 2026 Adeel Bhutta and Mitch Wand. Released under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license</p>
+
+  <div class="d-md-none mt-4 fs-2">
+    
+    
+      This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    
+  </div>
+</footer>
+
+      </div>
+    </div>
+    
+      
+
+<div class="search-overlay"></div>
+
+    
+  </div>
+
+  
+</body>
+</html>
+

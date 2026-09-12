@@ -1,0 +1,713 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <link rel="stylesheet" href="/CS4530-Fall-2026/assets/css/just-the-docs-default.css">
+
+  <link rel="stylesheet" href="/CS4530-Fall-2026/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+
+  <style id="jtd-nav-activation">
+  
+
+    .site-nav > ul.nav-list:first-child > li > a,
+    
+    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(1)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:not(:first-child) a,
+    .site-nav li.external a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(1) > a {
+      font-weight: 600;
+      text-decoration: none;
+    }.site-nav > ul.nav-list:first-child > li:nth-child(3) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(1) > button svg {
+      transform: rotate(-90deg);
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list {
+      display: block;
+    }
+  </style>
+
+  
+
+  
+    <script src="/CS4530-Fall-2026/assets/js/vendor/lunr.min.js"></script>
+  
+
+  <script src="/CS4530-Fall-2026/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+
+
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Individual Project 1 | CS4530, Fall 2026</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Individual Project 1" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Northeastern University CS 4530 “Fundamentals of Software Engineering”, Fall 2026. Professors Adeel Bhutta and Mitch Wand." />
+<meta property="og:description" content="Northeastern University CS 4530 “Fundamentals of Software Engineering”, Fall 2026. Professors Adeel Bhutta and Mitch Wand." />
+<link rel="canonical" href="https://neu-se.github.io/CS4530-Fall-2026/assignments/ip1" />
+<meta property="og:url" content="https://neu-se.github.io/CS4530-Fall-2026/assignments/ip1" />
+<meta property="og:site_name" content="CS4530, Fall 2026" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Individual Project 1" />
+<script type="application/ld+json">
+{"description":"Northeastern University CS 4530 “Fundamentals of Software Engineering”, Fall 2026. Professors Adeel Bhutta and Mitch Wand.","headline":"Individual Project 1","url":"https://neu-se.github.io/CS4530-Fall-2026/assignments/ip1","@type":"WebPage","dateModified":"2026-09-12T01:55:07+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+</head>
+
+<body>
+  <a class="skip-to-main" href="#main-content">Skip to main content</a>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="svg-link" viewBox="0 0 24 24">
+  <title>Link</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+  </svg>
+</symbol>
+
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+  <title>Menu</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+    <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</symbol>
+
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+  <title>Expand</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+</symbol>
+
+  <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE -->
+<symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+  <title id="svg-external-link-title">(external link)</title>
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+</symbol>
+
+  
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+  <title>Document</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+  </svg>
+</symbol>
+
+    <symbol id="svg-search" viewBox="0 0 24 24">
+  <title>Search</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</symbol>
+
+  
+  
+    <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md -->
+<symbol id="svg-copy" viewBox="0 0 16 16">
+  <title>Copy</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg>
+</symbol>
+<symbol id="svg-copied" viewBox="0 0 16 16">
+  <title>Copied</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/>
+  </svg>
+</symbol>
+
+  
+</svg>
+
+  
+    <header class="side-bar">
+  <div class="site-header">
+    <a href="/CS4530-Fall-2026/" class="site-title lh-tight">
+  CS4530, Fall 2026
+
+</a>
+    <button id="menu-button" class="site-button btn-reset" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
+    </button>
+  </div>
+
+  <nav aria-label="Main" id="site-nav" class="site-nav">
+  
+  
+    <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Calendar submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/calendar/" class="nav-list-link">Calendar</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s1" class="nav-list-link">Section 1 - Calendar</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s2" class="nav-list-link">Section 2 - Calendar</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s5" class="nav-list-link">Section 5 - Calendar</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s12" class="nav-list-link">Section 12 - Calendar</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Modules submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/modules/" class="nav-list-link">Modules</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/1-user-stories" class="nav-list-link">1 - Orientation & User Stories</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/2-requirements-to-tests" class="nav-list-link">2 - From Requirements to Tests</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/3-test-adequacy" class="nav-list-link">3 - Test Adequacy</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/4-web-apps" class="nav-list-link">4 - Design Patterns for Web Applications</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Assignments submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/assignments/" class="nav-list-link">Assignments</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/ip1" class="nav-list-link">Individual Project 1</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/project-overview" class="nav-list-link">Project Overview</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Tutorials submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/tutorials/" class="nav-list-link">Tutorials</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-getting-started" class="nav-list-link">Installing a Development Environment</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-typescript-basics" class="nav-list-link">TypeScript Basics</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-unit-testing" class="nav-list-link">Unit Testing with Vitest</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-apirequests" class="nav-list-link">Guide to API Requests</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week2-keyv" class="nav-list-link">Simple Storage with Keyv</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week2-socketio-basics" class="nav-list-link">Socket.IO Tutorial</a></li></ul></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/textbooks/" class="nav-list-link">Textbooks</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/staff/" class="nav-list-link">Staff</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Policies submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/policies/" class="nav-list-link">Policies</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/policies/ai" class="nav-list-link">Policy on Use of AI</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/policies/style/" class="nav-list-link">Code Style</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/policies/debugging/" class="nav-list-link">Debugging</a></li></ul></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/resources/" class="nav-list-link">Other Resources</a></li></ul>
+  
+</nav>
+
+
+<div class="d-md-block d-none site-footer">
+  
+  
+    This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+  
+  </div>
+</header>
+
+  
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+  
+    
+
+<div class="search" role="search">
+  <div class="search-input-wrap">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search CS4530, Fall 2026" autocomplete="off">
+    <label for="search-input" class="search-label">
+      <span class="sr-only">Search CS4530, Fall 2026</span>
+      <svg viewBox="0 0 24 24" class="search-icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg>
+    </label>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+  
+  
+  
+</div>
+
+    <div class="main-content-wrap">
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb-nav-list">
+    <li class="breadcrumb-nav-list-item"><a href="/CS4530-Fall-2026/assignments/">Assignments</a></li>
+    <li class="breadcrumb-nav-list-item"><span>Individual Project 1</span></li>
+  </ol>
+</nav>
+
+
+      <div id="main-content" class="main-content">
+        <main>
+          
+            <h2 class="fs-6" id="individual-project-1">
+  
+  
+    <a href="#individual-project-1" class="anchor-heading" aria-labelledby="individual-project-1"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 
+    
+    Individual Project 1
+    
+    <strong class="label label-red">Due Wednesday Sep 23, 2026 5:00pm (ET)</strong>
+
+  
+  
+</h2>
+    
+
+
+<p>The individual and group projects for this course place you in the role of the most recent hire at GameNite, an interactive application for people who like playing, or commenting on, multiplayer strategy games. It recently received a large investment thanks to its elevator pitch, “what if we had a version of Twitch, but for correspondence chess?”</p>
+
+<p>GameNite is a web application that consists of some code that runs in each client’s web browser, and also code that runs on a server. By the end of the semester, you’ll propose, design, implement, and test new features for our project. We understand that some of you may have some web development experience, but don’t expect that most of you do, the goal of this first project is to get you up to speed with our existing codebase and development environment.</p>
+
+<p>The objectives of this assignment are to:</p>
+
+<ul>
+  <li>Get you familiar with the basics of TypeScript, VSCode, and the project codebase</li>
+  <li>Get familiar with how REST API requests work</li>
+  <li>Learn how to read and write code in TypeScript</li>
+  <li>Learn how to write unit tests with Vitest</li>
+  <li>Translate high-level requirements into code</li>
+</ul>
+<h2 id="changelog">
+  
+  
+    <a href="#changelog" class="anchor-heading" aria-labelledby="changelog"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Changelog
+  
+  
+</h2>
+    
+<p><em>(No changes yet.)</em></p>
+<h2 id="1-getting-started">
+  
+  
+    <a href="#1-getting-started" class="anchor-heading" aria-labelledby="1-getting-started"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1. Getting Started
+  
+  
+</h2>
+    
+
+<p>Pawtograder is our course platform for individual projects and {final} group project. Before you can work on these, you need to connect your accounts.</p>
+
+<p>For detailed instructions with screenshots, see the <a href="https://docs.pawtograder.com/students/intro">Pawtograder Student Guide</a>.</p>
+
+<ol>
+  <li>Log in to Pawtograder at <a href="https://pawtograder.khoury.northeastern.edu">khoury.pawtograder.com</a> using your Northeastern credentials (click “Continue with Microsoft”)</li>
+  <li>Connect your GitHub account — when prompted, click “Sign in with GitHub” and authorize Pawtograder</li>
+  <li>
+    <p>Accept the organization invitation — click “Open GitHub Organization Invitation” and accept using your GitHub account</p>
+
+    <p>💡 Already have a GitHub account? Use your existing account! This keeps all your coursework visible on your profile if you choose to make repositories public later.</p>
+
+    <p>🔄 Already have Pawtograder linked to GitHub from CS 2100 or CS3100? You’ll still need to complete the steps above to enroll in the CS4530 GitHub organization in Pawtograder (skipping step 2).</p>
+
+    <p>⚠️ Course not showing up? Enrollments sync automatically every hour. If you just registered, wait an hour and try again. If it still doesn’t appear, contact your instructor.</p>
+  </li>
+</ol>
+<h3 id="11-prerequisites">
+  
+  
+    <a href="#11-prerequisites" class="anchor-heading" aria-labelledby="11-prerequisites"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.1. Prerequisites
+  
+  
+</h3>
+    
+
+<p>You’ll need to start by <a href="/CS4530-Fall-2026/tutorials/week1-getting-started">setting up your development environment</a>, including node.js and npm.</p>
+
+<p>Next, make sure you have used Git to clone the starter code. This code is divided into 3 main directories: client, server, and shared. These are connected in a single <a href="https://docs.npmjs.com/cli/v7/using-npm/workspaces">NPM workspace</a>, but you shouldn’t have to worry much about what that means. If you are new to Git, you may want to review <a href="/CS4530-Fall-2026/Assignments/ip1/learning-github.md">“Learning Basics of Git”</a> first! We expect all students to be able to use add/commit/push for their work.</p>
+
+<p>After that, follow the following steps:</p>
+
+<ol>
+  <li>
+    <p>Navigate to the root directory of the repo.</p>
+  </li>
+  <li>
+    <p>Install the dependencies:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip1-me $&gt; npm install
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Start the server:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip1-me $&gt; cd server
+server $&gt; npm run dev
+</code></pre></div>    </div>
+
+    <p>You should then be able to visit <a href="http://localhost:8000">http://localhost:8000</a> and get a message that tells you that you should be looking at elsewhere for the Vite frontend.</p>
+  </li>
+  <li>
+    <p><strong>Leave <code class="language-plaintext highlighter-rouge">npm run dev</code> running in the <code class="language-plaintext highlighter-rouge">./server</code> directory for the next step.</strong></p>
+  </li>
+  <li>
+    <p>Open a new terminal window and start <a href="https://vite.dev/">Vite</a>, and start the Vite development server using the following commands:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip1-me $&gt; cd client
+client $&gt; npm run dev
+</code></pre></div>    </div>
+
+    <p>This will give you a url to go to, probably <a href="http://localhost:4530/">http://localhost:4530/</a>. If you see a login page, then you’re up and running. You can create a new user or use one of the four automatically-created username-password combinations: <code class="language-plaintext highlighter-rouge">user0/pwd0000</code>, <code class="language-plaintext highlighter-rouge">user1/pwd1111</code>, <code class="language-plaintext highlighter-rouge">user2/pwd2222</code>, or <code class="language-plaintext highlighter-rouge">user3/pwd3333</code>.</p>
+  </li>
+</ol>
+<h3 id="12-understanding-the-server">
+  
+  
+    <a href="#12-understanding-the-server" class="anchor-heading" aria-labelledby="12-understanding-the-server"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.2. Understanding “The Server”
+  
+  
+</h3>
+    
+
+<p>The code in the server directory is all TypeScript that is intended to be run on a web server. It’s built on top of <a href="https://expressjs.com/">express</a>, a library used to create programs that accept and respond to HTTP requests. Express can do a lot of things, but we’re only using it to send and receive chunks of JSON-formatted data (line 19 of <code class="language-plaintext highlighter-rouge">server/src/app.ts</code> tells the Express library to behave that way).</p>
+<h4 id="http-get-requests">
+  
+  
+    <a href="#http-get-requests" class="anchor-heading" aria-labelledby="http-get-requests"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> HTTP GET Requests
+  
+  
+</h4>
+    
+
+<p>Your web browser makes one kind of HTTP request, a GET request, whenever you type in a URL and hit ENTER. If you go to <a href="http://localhost:8000/api/thread/list">http://localhost:8000/api/thread/list</a> while the server is running, you will see a bunch of JSON-formatted data. Line 37 of <code class="language-plaintext highlighter-rouge">server/src/app.ts</code> causes the request to that URL to be sent to the <code class="language-plaintext highlighter-rouge">getList</code> controller, which is just a function that is defined in <code class="language-plaintext highlighter-rouge">server/src/controllers/thread.controller.ts</code>.</p>
+
+<p>HTTP GET requests are supposed to just look up information. It is considered bad behavior if a HTTP GET requests changes anything about the state of the world. (Creating a new account on a website, updating a password, sending a chat message, and or deleting a Google doc are all examples of changes to the state of the world; HTTP GET shouldn’t be able to trigger any of these changes.) In the context of GameNite, a HTTP GET request shouldn’t add a new comment, or create a new post, or initialize a new game.</p>
+<h4 id="http-post-requests">
+  
+  
+    <a href="#http-post-requests" class="anchor-heading" aria-labelledby="http-post-requests"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> HTTP POST Requests
+  
+  
+</h4>
+    
+
+<p>A HTTP POST request, on the other hand, sends information to a server and receives information in return; it may change things about the state of the world. You can make POST requests from the command line with a tool like <a href="/CS4530-Fall-2026/tutorials/week1-apirequests">cURL</a>. If you run this cURL command while the server is running, it will make a new post that you can see if you go to the website’s frontend.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl --location 'localhost:8000/api/thread/create' \
+--header 'Content-Type: application/json' \
+--data '{
+    "auth": {
+        "username": "user3",
+        "password": "pwd3333"
+    },
+    "payload": {
+        "title": "New Post",
+        "text": "Text goes here"
+    }
+}'
+</code></pre></div></div>
+
+<p>Line 36 of <code class="language-plaintext highlighter-rouge">server/src/app.ts</code> causes this request to be sent to the <code class="language-plaintext highlighter-rouge">postCreate</code> controller, which is also just a function defined in <code class="language-plaintext highlighter-rouge">server/src/controllers/thread.controller.ts</code>.</p>
+<h4 id="other-http-requests">
+  
+  
+    <a href="#other-http-requests" class="anchor-heading" aria-labelledby="other-http-requests"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Other HTTP Requests
+  
+  
+</h4>
+    
+
+<p>There is a whole vocabulary of HTTP requests, but the most important two for this class are GET and POST. There’s a whole <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods">vocabulary of HTTP requests</a> that you can learn more about.</p>
+<h3 id="13-understanding-the-client">
+  
+  
+    <a href="#13-understanding-the-client" class="anchor-heading" aria-labelledby="13-understanding-the-client"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.3. Understanding “The Client”
+  
+  
+</h3>
+    
+
+<p>The code in the <code class="language-plaintext highlighter-rouge">client</code> directory is mostly TypeScript that is intended to be run in a web browser. But web browsers don’t know how to run TypeScript, they only know how to run JavaScript. While you’re working on a project, it’s important to be able to look at what your code is doing in a web browser, and when you’re done working on your project, all your code needs to be turned into a form that can get shipped to a web browser.</p>
+
+<p>GameNite uses <a href="https://vite.dev/">Vite</a> for this. Vite is a <em>build tool</em> — you use to preview the website you’re building, and you use it to build the final website that you ship to users.</p>
+<h3 id="14-shared-code">
+  
+  
+    <a href="#14-shared-code" class="anchor-heading" aria-labelledby="14-shared-code"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.4. Shared Code
+  
+  
+</h3>
+    
+
+<p>The TypeScript types in the shared directory are used by both the client and the server. The data sent by HTTP POST request to create a post has the TypeScript type <code class="language-plaintext highlighter-rouge">WithAuth&lt;CreateThreadMessage&gt;</code>, which, if you look at <code class="language-plaintext highlighter-rouge">shared/src/auth.types.ts</code> and <code class="language-plaintext highlighter-rouge">shared/src/thread.types.ts</code>, you can see expands to this TypeScript interface:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">type</span> <span class="nx">TypeOfPostRequest</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">auth</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">username</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+    <span class="nl">password</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="nl">payload</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">title</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+    <span class="nl">text</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The client can use the <code class="language-plaintext highlighter-rouge">WithAuth&lt;CreateThreadMessage&gt;</code> type to ensure that it is sending a message with the right structure to the server. Because these types are described with <a href="https://zod.dev/">zod</a> schema validators, the server can use the same code to check that it received something with the right structure. (Usually the server gets things sent by the client, but as we saw, you can also use cURL to send random nonsense to the server. The server can’t trust anything about the structure of information it receives from a HTTP request!)</p>
+<h3 id="15-testing">
+  
+  
+    <a href="#15-testing" class="anchor-heading" aria-labelledby="15-testing"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1.5. Testing
+  
+  
+</h3>
+    
+
+<p>Unit tests for the server are in <code class="language-plaintext highlighter-rouge">server/tests/**/*.spec.ts</code>. These are written in <a href="https://vitest.dev/">Vitest</a>, a tool discussed in one of the first two lectures. (If you’ve used Jest, you should be good to go: Vitest is designed to be very similar.)</p>
+
+<p>You can test the server by going to the <code class="language-plaintext highlighter-rouge">server</code> directory and running <code class="language-plaintext highlighter-rouge">npm run test</code>. It can be very helpful to have tests constantly re-running whenever you edit code, which you can do by running <code class="language-plaintext highlighter-rouge">npm run vitest</code>.</p>
+<h2 id="2-recommendations-when-working-on-the-project">
+  
+  
+    <a href="#2-recommendations-when-working-on-the-project" class="anchor-heading" aria-labelledby="2-recommendations-when-working-on-the-project"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 2. Recommendations When Working on the Project
+  
+  
+</h2>
+    
+
+<ol>
+  <li>Open the client application in a browser and interact with it. While interacting, monitor the “Network” tab (the precise name may depend on the browser) in your browser’s developer tools. This tab will give you information about the HTTP requests the client sends to the server. The HTTP requests will contain URIs in their headers. You can use this information to understand the endpoints in the server.</li>
+  <li>Make sure VS Code is set up as described in the development environment tutorial, with ESLint, Typescript, and Prettier installed. Our ESLint setup encodes very specific style rules, and if you do not have VSCode lint feedback enabled you will have to deal with an avalanche of errors when you first lint your code.</li>
+  <li>Do not wait until the last minute to run <code class="language-plaintext highlighter-rouge">npm run lint</code> and <code class="language-plaintext highlighter-rouge">npm run build</code> to check for linter and typescript errors!</li>
+  <li>Follow the <a href="/CS4530-Fall-2026/policies/debugging/">debugging policy</a> to help in the debugging process.</li>
+  <li>Frequently add and commit changes with git. This saves your changes and makes it easy to go back to a state where most tasks were complete.</li>
+</ol>
+<h2 id="3-project-submission">
+  
+  
+    <a href="#3-project-submission" class="anchor-heading" aria-labelledby="3-project-submission"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 3. Project Submission
+  
+  
+</h2>
+    
+
+<p>You will submit your code by pushing the final version into your repository (add/commit/push). In this assignment, you should only be making, committing, and pushing changes to the <code class="language-plaintext highlighter-rouge">main</code> branch of your repository. Be sure to check if the correct version is submitted before the deadline.</p>
+
+<p>You will submit written responses and cURL commands requested in Task 3 in responses.md file provided in your repo. Your code is already submitted to your project’s GitHub repo on pawtograder.</p>
+
+<p>We will review your submission from Pawtograder and grades/feedback will be provided on Canvas.</p>
+<h3 id="typescript-eslint-vitest-and-configuration-files">
+  
+  
+    <a href="#typescript-eslint-vitest-and-configuration-files" class="anchor-heading" aria-labelledby="typescript-eslint-vitest-and-configuration-files"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> TypeScript ESLint, Vitest, and Configuration Files
+  
+  
+</h3>
+    
+
+<p>The GitHub project contains a number of configuration files you <strong>may not modify</strong>: <code class="language-plaintext highlighter-rouge">package.json</code>, <code class="language-plaintext highlighter-rouge">package-lock.json</code>, <code class="language-plaintext highlighter-rouge">.prettierrc</code>, <code class="language-plaintext highlighter-rouge">tsconfig.json</code>, <code class="language-plaintext highlighter-rouge">vitest.config.mjs</code>, and <code class="language-plaintext highlighter-rouge">vite.config.mjs</code> are configuration files, as is everything in the <code class="language-plaintext highlighter-rouge">.github</code> directory. If you change any of these files, take care to change them back; the list of changes in the feedback PR should not show any changes to these files. You also may not include <code class="language-plaintext highlighter-rouge">eslint-disable</code> commands to disable ESLint’s checks in your final submission.</p>
+
+<p>The code you submit must pass GitHub’s automatic checks, which mostly just amount to the TypeScript typechecker, the ESLint linter, and the tests. You can run these yourself like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip1-me $&gt; npm run check --workspaces
+ip1-me $&gt; npm run lint --workspaces
+ip1-me $&gt; npm run test --workspaces
+</code></pre></div></div>
+
+<p>When you push your code to GitHub, you can see the status icon for your most recent submission. It’s initially a yellow circle, like this:</p>
+
+<p><img src="/CS4530-Fall-2026/Assignments/ip1/github-ci.png" alt="image" /></p>
+
+<p>After the tests run, this will turn into a red ❌ or a green ✅. Clicking on the icon will let you see details of the tests we ran.</p>
+
+<p>The Actions tab on GitHub has the results of previous runs.</p>
+
+<p><img src="/CS4530-Fall-2026/Assignments/ip1/ActionsTab.png" alt="image" /></p>
+
+<p>If your action run fails to complete successfully, your code is not submitted.</p>
+
+<p>After your submission, you will be able to check feedback from Autograder using “Test Assignment” -&gt; “Click on commit”. It will show you feedback on your submission.</p>
+
+<p><strong>Up to 25% of your total grade on the assignment may be deducted for CI failures (5% for prettier failures, 10% for TypeScript failures, and 10% for ESLint failures). In severe cases we may decline to grade your assignment entirely. Give yourself sufficient time to find and fix any errors.</strong> ESLint <em>warnings</em> do not cause CI to fail and will not automatically lead to a deduction, but it is bad practice to have lots of console statements in your code, and this can lead to a point deduction if it makes it hard for a TA to understand your code.</p>
+<h2 id="4-implementation-tasks">
+  
+  
+    <a href="#4-implementation-tasks" class="anchor-heading" aria-labelledby="4-implementation-tasks"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 4. Implementation Tasks
+  
+  
+</h2>
+    
+<h3 id="task-1-connect4">
+  
+  
+    <a href="#task-1-connect4" class="anchor-heading" aria-labelledby="task-1-connect4"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Task 1: Connect4
+  
+  
+</h3>
+    
+
+<p>You should try to start a game of Connect4 in the development server. 
+(Log in as two different users in two different windows.) You should observe that other games work, but Connect4 does not! To make Connect4 work on GameNite, you’ll need to fill in the missing implementation in <code class="language-plaintext highlighter-rouge">server/src/games/connect4.ts</code>.</p>
+
+<p>Places to look for guidance:</p>
+<ul>
+  <li>The type specification for a game implementation in <code class="language-plaintext highlighter-rouge">server/src/games/gameLogic.ts</code>, explains what each unimplemented function does.</li>
+  <li>The types of Connect4 in <code class="language-plaintext highlighter-rouge">shared/src/games/connect4.types.ts</code>, explain in detail how the game is intended to work.</li>
+  <li>The implementations of Nim and Guessing Game in the directory <code class="language-plaintext highlighter-rouge">server/src/games</code>, which may be a helpful basis for comparison.</li>
+  <li>The provided test file <code class="language-plaintext highlighter-rouge">server/src/games/connect4.spec.ts</code> can help you reason about the expected behavior of Connect 4.</li>
+</ul>
+
+<p>A reference implementation is available at <a href="https://summer-26-gamenite.onrender.com/">https://summer-26-gamenite.onrender.com/</a>, you’ll need to create an account (or two) to use this reference implementation.</p>
+
+<p><strong>Until the game is implemented, given tests will fail. You are required to get all those tests to pass. You are free to add new tests but you cannot change the existing tests.</strong></p>
+
+<p>This task is worth 25 points:</p>
+<ul>
+  <li>15 points will be assigned automatically based on passing our test suite</li>
+  <li>10 points will be assigned by TAs manually checking for issues with <a href="/CS4530-Fall-2026/policies/style/">code style</a>. Take care to document any helper functions you include.</li>
+</ul>
+<h3 id="task-2-tests-for-tic-tac-toe">
+  
+  
+    <a href="#task-2-tests-for-tic-tac-toe" class="anchor-heading" aria-labelledby="task-2-tests-for-tic-tac-toe"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Task 2: Tests for Tic-Tac-Toe
+  
+  
+</h3>
+    
+
+<p>The purpose of this part of the assignment is to get used to writing Vitest tests. <em>(Copilot-esque LLM autocompletion is quite good at writing tests, and you’ll have a chance to try this out later in the class. If you have Copilot-style autocompletion enabled, you are violating the course’s academic integrity policy and risking a failing grade, and in addition, this task will be exceptionally pointless and boring.)</em></p>
+
+<p>Write tests for Tic-Tac-Toe in the file, <code class="language-plaintext highlighter-rouge">server/src/games/ticTacToe.spec.ts</code>. Your tests should achieve full branch coverage on the current implementation of Tic Tac Toe: when you run <code class="language-plaintext highlighter-rouge">npm run test</code> in the <code class="language-plaintext highlighter-rouge">server</code> directory, Vitest should report no “Uncovered Line #s” in <code class="language-plaintext highlighter-rouge">src/games/ticTacToe.ts</code>. (You can also open the <code class="language-plaintext highlighter-rouge">index.html</code> file in the <code class="language-plaintext highlighter-rouge">coverage</code> folder that <code class="language-plaintext highlighter-rouge">vitest</code> creates when you run <code class="language-plaintext highlighter-rouge">npm run test</code>, which provides an easily readable coverage report.) There are other parts of the application that don’t have full coverage, but you only need to worry about coverage of the <code class="language-plaintext highlighter-rouge">ticTacToe.ts</code> implementation.</p>
+
+<p>Make sure to look at the tests for Nim and Guessing Game, they will provide an excellent guide.</p>
+
+<p>This task is worth 20 points:</p>
+<ul>
+  <li>5 points for having tests that reasonably test the functions in the implementation</li>
+  <li>5 points for following the format and style of the Nim and Guessing Game tests</li>
+  <li>6 points for achieving full branch coverage for <code class="language-plaintext highlighter-rouge">ticTacToe.ts</code> (3 points for 90%+ branch coverage)</li>
+  <li>4 points for your tests working against some of our custom “mutants” — your tests should not be overspecified (they should pass valid implementations of <code class="language-plaintext highlighter-rouge">ticTacToe.ts</code> that may be slightly different than the provided one), and they should correctly catch and fail implementations of Tic-Tac-Toe that have bugs.</li>
+</ul>
+
+<p>Your tests should pass valid implementations and catch the buggy ones.</p>
+<h3 id="task-3-exposing-errors-in-the-user-service">
+  
+  
+    <a href="#task-3-exposing-errors-in-the-user-service" class="anchor-heading" aria-labelledby="task-3-exposing-errors-in-the-user-service"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Task 3: Exposing Errors in the User Service
+  
+  
+</h3>
+    
+
+<p>There are several problems with the User service for GameNite. In the remainder of this assignment, you will begin addressing them.</p>
+
+<p>The first and most glaring is that some of the functions, despite claiming to return <code class="language-plaintext highlighter-rouge">SafeUserInfo</code> objects, actually return passwords, which are then passed on to the controller and returned. REST API calls should never expose passwords in their responses like this!</p>
+
+<ol>
+  <li>
+    <p>Investigate the five User REST API endpoints listed in the README, the User controller in <code class="language-plaintext highlighter-rouge">server/src/controllers/user.controller.ts</code>, and the User service in <code class="language-plaintext highlighter-rouge">server/src/services/user.service.ts</code>, to find at least one way of exposing passwords through the API. In the written part of your submission, include a cURL command that result in the User API returning passwords.</p>
+  </li>
+  <li>
+    <p>It’s quite embarrassing that these bugs exist despite the user service having 100% test coverage! Here’s your chance to do test-driven development. <strong>First</strong>, improve existing tests and/or add new tests so that the test suite actually fails (as it should!) on the current implementation. The User record’s <code class="language-plaintext highlighter-rouge">userId</code> (a random id, not the username) and the <code class="language-plaintext highlighter-rouge">password</code> should never be exposed through REST API endpoints, and the tests should account for this requirement. <strong>Second</strong>, modify the user service so that it passes the new tests.</p>
+  </li>
+  <li>
+    <p>In the written part of your submission, briefly explain why TypeScript allowed a SafeUserInfo-returning service function to include a password field despite SafeUserInfo having no password field.</p>
+  </li>
+  <li>
+    <p><strong>Challenge</strong>: there’s another definite bug in the user service that’s a little more difficult to find, but that could potentially represent a security issue. Identify the bug and include a cURL command that demonstrates it, explain why the cURL command demonstrates something bad happening, create a failing test, and fix the bug. (This is just worth 5% of the overall score for this assignment. Don’t get stuck here and neglect the other tasks!)</p>
+  </li>
+</ol>
+
+<p>This task is worth 20 points: 6 points for each sub-parts 1-3 and 2 points for subpart 4.</p>
+<h3 id="task-4-creating-an-auth-model">
+  
+  
+    <a href="#task-4-creating-an-auth-model" class="anchor-heading" aria-labelledby="task-4-creating-an-auth-model"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Task 4: Creating an Auth model
+  
+  
+</h3>
+    
+
+<p>There are two connected issues with the User model:</p>
+
+<ol>
+  <li>There’s a frequent use of for-loops to loop through all the usernames to find a record that matches a specific username.</li>
+  <li>Storing authentication information like a password alongside user profile information like a display name is not a great design: it can make accidental leaks like the ones we’ve encountered more likely!</li>
+</ol>
+
+<p>These aren’t totally connected problems, but we can solve them together. The file <code class="language-plaintext highlighter-rouge">server/src/services/user.service.ts</code> contains an unused <code class="language-plaintext highlighter-rouge">storedAuths</code> object that you will use to maintain a mapping from valid <strong>usernames</strong> to the user IDs that let you look up profile information (like the display name) for that user. The <code class="language-plaintext highlighter-rouge">AuthRecord</code> type defined in <code class="language-plaintext highlighter-rouge">server/src/models.ts</code> also contains a password.</p>
+
+<p>Whenever you create a user, you’ll continue to create a new and random user ID, and add to <code class="language-plaintext highlighter-rouge">storedUsers</code> an entry that maps from the user ID to the user’s record. You should modify <code class="language-plaintext highlighter-rouge">UserRecord</code> to no longer contain a password, and ensure that the stored record does not contain a password. Additionally, when you create a user, you’ll add an entry to <code class="language-plaintext highlighter-rouge">storedAuths</code> that maps the username to the <code class="language-plaintext highlighter-rouge">AuthRecord</code>. By using stored auth records, you can find the user record associated with a username in two steps: find the user ID using <code class="language-plaintext highlighter-rouge">storedAuths</code>, and then find the user’s record with that ID in <code class="language-plaintext highlighter-rouge">storedUsers</code>.</p>
+
+<p>To complete this part, you should:</p>
+<ul>
+  <li>Remove the <code class="language-plaintext highlighter-rouge">password</code> field from <code class="language-plaintext highlighter-rouge">UserRecord</code>, and instead</li>
+  <li>Maintain the property that whenever you have <code class="language-plaintext highlighter-rouge">storedUsers[id] === user</code>, then <code class="language-plaintext highlighter-rouge">storedAuth[user.username].user === id</code>.</li>
+  <li>Avoid having any functions in <code class="language-plaintext highlighter-rouge">user.service.ts</code> that loop over all elements in a JavaScript object in order to find one in particular.</li>
+  <li>Ensure that all tests still pass and that the tests still provide total branch coverage for the User service (<code class="language-plaintext highlighter-rouge">user.service.ts</code>. You don’t need to worry about coverage of other files.</li>
+</ul>
+
+<p>This task is worth 20 points, which will be assigned by manual grading:</p>
+<ul>
+  <li>5 points for correctly modifying the User and Auth records</li>
+  <li>5 points for correctly updating document comments and documenting new</li>
+  <li>5 points for ensuring that the stored User records and stored Auth records stay in sync</li>
+  <li>5 points for ensuring that there are no functions that loop through all the usernames in order to find one in particular</li>
+</ul>
+<h3 id="task-5-refactoring-the-auth-model">
+  
+  
+    <a href="#task-5-refactoring-the-auth-model" class="anchor-heading" aria-labelledby="task-5-refactoring-the-auth-model"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Task 5: Refactoring the Auth model
+  
+  
+</h3>
+    
+
+<p>The purpose of this part of the assignment is to get your fingers comfortable with the functionality that TypeScript provides, and comfortable with seeing “red squiggly” errors in VSCode and then fixing them. <em>(Again: if you use LLM or Copilot-powered autocompletion on this part, you are doing nothing but interfering with your own learning.)</em></p>
+
+<p><strong>Suggestion:</strong> if you haven’t added and committed your code with Git yet, you should do so now. This task has you making a lot of changes, and it may be helpful to be able to quickly go back to the code before you started making changes.</p>
+
+<p>You now have two different types of code mixed up in <code class="language-plaintext highlighter-rouge">user.service.ts</code> — code primarily concerned with authentication, and code primarily concerned with the user’s personal data. In this part, your goal is to move the following elements from <code class="language-plaintext highlighter-rouge">user.service.ts</code> to a new file, <code class="language-plaintext highlighter-rouge">auth.service.ts</code>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">storedAuths</code> (which should not be exported from <code class="language-plaintext highlighter-rouge">auth.service.ts</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">resetStoredAuth()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">getUserByUsername()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">checkAuth()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">enforceAuth()</code></li>
+</ul>
+
+<p>The following should stay in <code class="language-plaintext highlighter-rouge">user.service.ts</code>:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">disallowedUsernames</code> and <code class="language-plaintext highlighter-rouge">storedUsers</code> (which should not be exported)</li>
+  <li><code class="language-plaintext highlighter-rouge">populateSafeUserInfo()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">createUser()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">getUsersByUsername()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">updateUser()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">resetStoredUsers()</code></li>
+</ul>
+
+<p>You can add additional exported functions from <code class="language-plaintext highlighter-rouge">auth.service.ts</code> if needed — you’ll need to create at least one other helper function to create and/or update <code class="language-plaintext highlighter-rouge">AuthRecord</code> records, and call those helper functions within <code class="language-plaintext highlighter-rouge">user.service.ts</code>.</p>
+
+<p>Moving these functions will break a lot of other parts of the server, but using TypeScript, the linter, and your tests, it should not be too arduous to find what broke and fix it.</p>
+
+<p>This task is worth 15 points:</p>
+
+<ul>
+  <li>6 points for the all the functions ending up in their correct files as described above</li>
+  <li>5 points for tests passing and for <code class="language-plaintext highlighter-rouge">user.service.ts</code> and <code class="language-plaintext highlighter-rouge">auth.service.ts</code> still having 100% branch coverage (minus 1 point for each missing coverage-percentage, but no negative points, zero points if any tests fail or if TypeScript tests fail because of the refactor). Don’t worry about coverage in any other files.</li>
+  <li>4 points for all functions having correct <a href="/CS4530-Fall-2026/policies/style/">code style</a> and documentation</li>
+</ul>
+<h2 id="5-grading-summary">
+  
+  
+    <a href="#5-grading-summary" class="anchor-heading" aria-labelledby="5-grading-summary"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 5. Grading Summary
+  
+  
+</h2>
+    
+
+<p>The assignment as a whole is worth 100 points.</p>
+<ul>
+  <li>Task 1: 25 points</li>
+  <li>Task 2: 20 points</li>
+  <li>Task 3: 20 points</li>
+  <li>Task 4: 20 points</li>
+  <li>Task 5: 15 points</li>
+</ul>
+
+          
+
+          
+            
+          
+        </main>
+        
+<hr>
+<footer>
+  
+
+  <p class="text-small mb-0">&copy; 2026 Adeel Bhutta and Mitch Wand. Released under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license</p>
+
+  <div class="d-md-none mt-4 fs-2">
+    
+    
+      This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    
+  </div>
+</footer>
+
+      </div>
+    </div>
+    
+      
+
+<div class="search-overlay"></div>
+
+    
+  </div>
+
+  
+</body>
+</html>
+
