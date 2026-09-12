@@ -2,6 +2,6 @@
 name: Arun Daniel Kennedy
 role: Teaching Assistant
 email: kennedy.ar@northeastern.edu
-photo: 
+photo: staff/arun_kennedy.jpg
 
 ---
