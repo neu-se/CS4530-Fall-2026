@@ -1,0 +1,11 @@
+2026-08-06 M04 Activity text
+
+Modify the persistent Transcript server so that
+
+(1) every grade carries with it a date, which is a Semester (which must be one of Fall, Spring, or Summer), and a year (which must be a 4 digit number greater than or equal to 2026).
+
+(2) a student may take a course multiple times.
+
+(3) add a new route /api/getGPA which returns the GPA for a given ID.  The GPA should wait each course equally, but if a student takes a course more than once, only the highest grade should count. As part of your code, include a comment explaining why you put the code for this feature where you did.
+
+(4) Include suitable test files.  Use supertest (following the example of api.spec.ts) to test your validation.  Explain what portions of your codebase is tested by each of your test files.
