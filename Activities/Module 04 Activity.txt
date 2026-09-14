@@ -8,4 +8,6 @@ Modify the persistent Transcript server so that
 
 (3) add a new route /api/getGPA which returns the GPA for a given ID.  The GPA should wait each course equally, but if a student takes a course more than once, only the highest grade should count. As part of your code, include a comment explaining why you put the code for this feature where you did.
 
-(4) Include suitable test files.  Use supertest (following the example of api.spec.ts) to test your validation.  Explain what portions of your codebase is tested by each of your test files.
+(4) Add suitable tests to persistentService.spec.ts to test your solution to part (3)
+
+
