@@ -21,7 +21,7 @@ The objectives of this assignment are to:
 - Translate high-level requirements into code
 
 ## Changelog
- _(No changes yet.)_
+- 2026-09-15: Corrected the line references in section 1.2 (lines 35 and 34 for the `getList` and `postCreate` controllers), and fixed the property in Task 4 to `storedAuth[user.username].userId` to match the actual `AuthRecord` structure.
 
 ## 1. Getting Started
 
@@ -81,7 +81,7 @@ The code in the server directory is all TypeScript that is intended to be run on
 
 #### HTTP GET Requests
 
-Your web browser makes one kind of HTTP request, a GET request, whenever you type in a URL and hit ENTER. If you go to <http://localhost:8000/api/thread/list> while the server is running, you will see a bunch of JSON-formatted data. Line 37 of `server/src/app.ts` causes the request to that URL to be sent to the `getList` controller, which is just a function that is defined in `server/src/controllers/thread.controller.ts`.
+Your web browser makes one kind of HTTP request, a GET request, whenever you type in a URL and hit ENTER. If you go to <http://localhost:8000/api/thread/list> while the server is running, you will see a bunch of JSON-formatted data. Line 35 of `server/src/app.ts` causes the request to that URL to be sent to the `getList` controller, which is just a function that is defined in `server/src/controllers/thread.controller.ts`.
 
 HTTP GET requests are supposed to just look up information. It is considered bad behavior if a HTTP GET requests changes anything about the state of the world. (Creating a new account on a website, updating a password, sending a chat message, and or deleting a Google doc are all examples of changes to the state of the world; HTTP GET shouldn't be able to trigger any of these changes.) In the context of GameNite, a HTTP GET request shouldn’t add a new comment, or create a new post, or initialize a new game.
 
@@ -104,7 +104,7 @@ curl --location 'localhost:8000/api/thread/create' \
 }'
 ```
 
-Line 36 of `server/src/app.ts` causes this request to be sent to the `postCreate` controller, which is also just a function defined in `server/src/controllers/thread.controller.ts`.
+Line 34 of `server/src/app.ts` causes this request to be sent to the `postCreate` controller, which is also just a function defined in `server/src/controllers/thread.controller.ts`.
 
 #### Other HTTP Requests
 
@@ -251,7 +251,7 @@ Whenever you create a user, you’ll continue to create a new and random user ID
 
 To complete this part, you should:
 - Remove the `password` field from `UserRecord`, and instead
-- Maintain the property that whenever you have `storedUsers[id] === user`, then `storedAuth[user.username].user === id`.
+- Maintain the property that whenever you have `storedUsers[id] === user`, then `storedAuth[user.username].userId === id`.
 - Avoid having any functions in `user.service.ts` that loop over all elements in a JavaScript object in order to find one in particular.
 - Ensure that all tests still pass and that the tests still provide total branch coverage for the User service (`user.service.ts`. You don't need to worry about coverage of other files.
 
