@@ -21,7 +21,7 @@ The objectives of this assignment are to:
 - Translate high-level requirements into code
 
 ## Changelog
- _(No changes yet.)_
+- 2026-09-15: Corrected the line references in section 1.2 (lines 35 and 34 for the `getList` and `postCreate` controllers), and fixed the property in Task 4 to `storedAuth[user.username].userId` to match the actual `AuthRecord` structure.
 
 ## 1. Getting Started
 
