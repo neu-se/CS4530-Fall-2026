@@ -39,6 +39,8 @@ For detailed instructions with screenshots, see the [Pawtograder Student Guide](
 
     ⚠️ Course not showing up? Enrollments sync automatically every hour. If you just registered, wait an hour and try again. If it still doesn't appear, contact your instructor.
 
+    ⚠️ If you running into problems with SAML identity (or if your identity is already linked to an older github account), we suggest that you should first unlink older github account from neu org (or remove northeastern email address) and then add your northeastern email to the correct github account. After that you should be able to accept an invitation. Your instructor can send you a fresh invitation.
+
 ### 1.1. Prerequisites
 
 You'll need to start by [setting up your development environment]({{site.baseurl}}{% link tutorials/week1-getting-started.md %}), including node.js and npm.
