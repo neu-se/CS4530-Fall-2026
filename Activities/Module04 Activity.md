@@ -18,7 +18,7 @@ Modify the persistent transcript server at `src/withPersistence` so that
 2. A student may take a course multiple times. [2 pts]
 3. Add a new route /api/getGPA which returns the GPA for a given ID. The GPA should wait each course equally, but if a student takes a course more than once, only the highest grade should count. As part of your code, include a comment explaining why you put the code for this feature where you did. [2 pts]
 4. Add suitable tests to persistentService.spec.ts to test your solution to part (3) [5 pts]
-5. When you are done, submit `persistentService.spec.ts` as required by your instructor.
+5. When you are done, submit a zip file containing the whole `src/withPersistence` folder (including `persistentService.spec.ts`) and your `src/types.ts` file, as required by your instructor.
 
 ### Grading Criteria: 10pts
 
