@@ -3,10 +3,10 @@
 # Each key has a "name" attribute (rendered on the calendar), a "page" attribute (which contains a link to the lesson) and an optional "type" attribute, which is a key into the _data/config.yml "types" dictionary.
 mod1:
   name: Orientation & Requirements
-  page: 
+  page: /modules/1-user-stories
 mod2:
   name: From Requirements to Tests
-  page: 
+  page: /modules/2-requirements-to-tests
 mod2a:
   name: Requirements Analysis
   page: 
@@ -14,11 +14,11 @@ mod2b:
   name: Test-Driven Development
   page: 
 mod3:
-  name: When Have I Written Enough Tests?
-  page: 
+  name: Test Adequacy
+  page: /modules/3-test-adequacy
 mod4:
   name: Design Patterns for Web Applications
-  page: 
+  page: /modules/4-web-apps
 mod5:
   name: React Part 1 (Introduction)
   page: /modules/5-react
@@ -102,7 +102,7 @@ posters:
 ip1:
   name: Individual Project 1
   type: deadline
-  page: 
+  page: /assignments/ip1
 ip2:
   name: Individual Project 2 
   type: deadline
