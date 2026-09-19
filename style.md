@@ -26,7 +26,7 @@ We do not suggest studying these lists directly, instead, begin writing code nat
 report issues as you find them. The most important rules to get started are:
 * Indent using spaces, not tabs; use 2 spaces for each level of indentation
 * Enclose all string literals with single quotes, not double
-* Variables must be named using lowerCamelCase, types are named using UpperCamelCase. Constants (read-only variables that are assigned a static value once and not reused) must be named using UPPER_CASE_WITH_UNDERSCORES.
+* Variables must be named using lowerCamelCase, types are named using UpperCamelCase. Global Constants (read-only variables that are assigned a static value once and not reused) must be named using UPPER_CASE_WITH_UNDERSCORES.
 * The maximum line length is 100 characters
 
 ### Naming
