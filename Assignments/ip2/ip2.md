@@ -16,12 +16,12 @@ The objectives of this assignment are to:
 - Implement interactive web applications with the React library
 
 ## Changelog
-NA
 
+NA
 
 ## 1. Getting Started
 
-Log in to Pawtograder at [khoury.pawtograder.com](https://pawtograder.khoury.northeastern.edu) using your Northeastern credentials (click "Continue with Microsoft") to accept this Assignment (If you are having trouble accessing pawtograder, see detailed instructions in Individual Project 1). It will create a Github repository for you which will include the starter code for this assignment. Run `npm install` in the root directory to fetch all dependencies for the `client`, `server`, and `shared` folders.
+Log in to Pawtograder at [pawtograder.khoury.northeastern.edu](https://pawtograder.khoury.northeastern.edu) using your Northeastern credentials (click "Continue with Microsoft") to accept this Assignment (If you are having trouble accessing Pawtograder, see detailed instructions in Individual Project 1). It will create a GitHub repository for you which will include the starter code for this assignment. Run `npm install` in the root directory to fetch all dependencies for the `client`, `server`, and `shared` folders.
 
 ### 1.1 Optional but Highly Recommended: MongoDB
 
@@ -31,7 +31,7 @@ Your starter code uses a proper repository layer, which connects to MongoDB thro
 
 1. Follow the [instructions in the official MongoDB documentation](https://www.mongodb.com/docs/manual/administration/install-community/) to install the free community edition.
 2. Choose 'Install on Linux', 'Install on macOS', or 'Install on Windows', depending on your system. (the following steps are for Windows)
-3. Scroll down to the section labeled 'Install MongoDB Community Edition.' and click on [MongoDB Download Center](https://www.mongodb.com/try/download/community?tck=docs_server).
+3. Scroll down to the section labeled 'Install MongoDB Community Edition' and click on [MongoDB Download Center](https://www.mongodb.com/try/download/community?tck=docs_server).
 4. For Windows, in the Package dropdown, select `msi`. Then download and run the installer.
 5. On Windows, select the _“Install MongoDB as a Service”_ checkbox and install. This will start MongoDB as a background service.
 6. Install "MongoDB Compass" if prompted.
@@ -52,7 +52,7 @@ Mongo offers several methods of interacting with your Mongo databases.
 - Mongo shell (_mongosh_) provides a command-line interface that can be used to interact with databases in MongoDB.
 
   For Windows:
-  - Download it [here](https://www.mongodb.com/try/download/shell) using the msi package. You can also use _mongosh_ to see if the MongoDB server is running. Try the MongoDB Community Edition and the command `show dbs`; you should see a list of existing databases in your local instance.
+  - Download it [here](https://www.mongodb.com/try/download/shell) using the msi package. You can also use _mongosh_ to see if the MongoDB server is running. Start _mongosh_ and try the command `show dbs`; you should see a list of existing databases in your local instance.
 
   For Mac:
   - Mongo shell is automatically installed with MongoDB through the Mac installation instructions. To use it, make sure MongoDB is running as a macOS service, then type `mongosh` into the terminal.
@@ -83,17 +83,16 @@ The application should work as before, but any changes you make in the applicati
 ## 2. Recommendations When Working on the Project
 
 1. Have the frontend and backend running, and have the project open in your browser, while you are working. It's very useful to have the website update as you make changes.
-2. Frequently add and commit changes with git. This saves your changes and makes it easy to go back to a state where most tasks were complete. The first three tasks are cumulative, as are the last three tasks, and if you run into trouble with Task 5, you will want to be able to backtrack to a working implementation of Task 4.
+2. Frequently add and commit changes with git. This saves your changes and makes it easy to go back to a state where most tasks were complete. The first three tasks are cumulative, as are the last two tasks, and if you run into trouble with Task 5, you will want to be able to backtrack to a working implementation of Task 4.
 3. Do not wait until the last minute to run `npm run lint` and `npm run check` to check for linter and typescript errors!
 4. Follow the [debugging policy]({{ site.baseurl }}{% link debugging.md %}) to help in the debugging process.
 5. Task 5 is more challenging than the other tasks, but is only worth 24% of credit. Don't wait until the last minute to attempt this task if you intend to complete all parts of the assignment.
 
 ## 3. Project Submission
 
-You will submit your code by pushing the final version into your repository (add/commit/push). **All commits must be visible on the main branch on GitHub classroom to receive credit.** Be sure to check if the correct version is submitted before the deadline.
+You will submit your code by pushing the final version into your repository (add/commit/push). **All commits must be visible on the main branch on GitHub to receive credit.** Be sure to check if the correct version is submitted before the deadline.
 
 We will review your submission from Pawtograder and grades/feedback will be provided on Canvas.
-
 
 ### TypeScript ESLint, Vitest, and Configuration Files
 
@@ -102,10 +101,10 @@ The GitHub project contains a number of configuration files you **may not modify
 The code you submit must pass GitHub's automatic checks, which mostly just amount to the TypeScript typechecker, the ESLint linter, and the tests. You can run these yourself like this:
 
 ```
-ip1-me $> npm run prettier --workspaces
-ip1-me $> npm run check --workspaces
-ip1-me $> npm run lint --workspaces
-ip1-me $> npm run test --workspaces
+ip2-me $> npm run prettier --workspaces
+ip2-me $> npm run check --workspaces
+ip2-me $> npm run lint --workspaces
+ip2-me $> npm run test --workspaces
 ```
 
 When you push your code to GitHub, you can see the status icon for your most recent submission. It's initially a yellow circle, like this:
@@ -153,7 +152,7 @@ The code you changed in Task 1 was only one place where user display names were 
 - "Reply by (DisplayName)" in forum comments
 - "(Display name) created 1 day ago" on the home page and the game list and forum list pages
 
-For this task, you'll make ~~three~~**two** changes to all display name locations:
+For this task, you'll make **two** changes to all display name locations:
 
 - Consistently refer to the current logged-in user by the second-person pronoun "you," instead of by their display name. (The exception is the "signed in as (DisplayName)" message in the header — leave that alone.)
 - Consistently link other users' usernames to their profile. References to the current user ("you") should not link to the current user's profile.
@@ -202,6 +201,7 @@ Your implementation does not need to match any particular visual style. It must 
 ### Task 5: Kings and Multi-Captures
 
 In this task you will extend the Checkers game to support **kings** and **multi-capture chains**, and restrict regular pieces to **forward-only movement**. This requires changes across `shared/src/games/checkers.types.ts`, `server/src/games/checkers.ts`, `server/tests/games/checkers.spec.ts`, and `client/src/games/CheckersGame.tsx`.
+
 The new rules are:
 
 **Movement changes:**
@@ -233,7 +233,7 @@ To support multi-capture chains, the move format must be extended. Instead of `{
 6. Regular pieces are limited to a single capture per turn, even if a second capture would be geometrically possible.
 7. The server correctly removes all captured pieces along a multi-capture chain.
 8. The frontend correctly submits the full move sequence for a multi-capture chain. When the `legalMoves` view contains a sequence longer than two squares, the frontend submits the full sequence.
-9. The existing tests in `checkers.spec.ts` are updated to reflect the new rules and pass. This includes updating any existing tests that no longer hold for example, the test that verifies pieces can move in all four directions must be updated to reflect that regular pieces are now restricted to forward-only movement. New tests are added that achieve ≥95% line and branch coverage of `server/src/games/checkers.ts`, covering king promotion, forward-only movement for regular pieces, king movement in all four directions, and multi-capture chains.
+9. The existing tests in `checkers.spec.ts` are updated to reflect the new rules and pass. This includes updating any existing tests that no longer hold. For example, the test that verifies pieces can move in all four directions must be updated to reflect that regular pieces are now restricted to forward-only movement. New tests are added that achieve ≥95% line and branch coverage of `server/src/games/checkers.ts`, covering king promotion, forward-only movement for regular pieces, king movement in all four directions, and multi-capture chains.
 
 This task is worth **24 points**:
 
