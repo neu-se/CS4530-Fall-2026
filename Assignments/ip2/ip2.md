@@ -178,21 +178,22 @@ In this version of Checkers, the rules are as follows:
 
 The backend logic for Checkers is implemented — you can read the type descriptions in `shared/src/games/checkers.types.ts`, the implementation in `server/src/games/checkers.ts`, and the tests in `server/tests/games/checkers.spec.ts`. The frontend implementation in `client/src/games/CheckersGame.tsx` is the only part that is completely missing, and you will implement the game's frontend in React for this task.
 
-The task is worth **26 points**, two points for each of the following conditions of satisfaction:
+The task is worth **26 points**. Each condition of satisfaction below is worth two points unless marked otherwise:
 
 1. The game board is displayed as an 8×8 grid of squares. Dark squares (where `(row + col) % 2 === 1`) should have a visibly different background color from light squares.
 2. Red pieces are displayed on their squares in a visually distinct way (e.g., a red circle). Black pieces are displayed distinctly (e.g., a dark circle). Empty squares show nothing.
 3. The current player's name (or "your turn" if it is the viewer's turn) is shown somewhere near the board.
 4. Non-players (watchers) always see all squares with `cursor: default`. Clicking anywhere on the board never sends a move.
 5. If it is the current player's turn and the game is not over, their pieces should have `cursor: pointer`. Clicking on a piece that has no legal moves should have no effect.
-6. Clicking on one of the current player's pieces that has legal moves should **select** it — the selected piece should be visually highlighted.
+6. **(3 points)** Clicking on one of the current player's pieces that has legal moves should **select** it — the selected piece should be visually highlighted.
 7. After selecting a piece, the squares it can legally move to should be visually highlighted (e.g., a different background color).
-8. Clicking a highlighted destination square should submit the correct move to the server. The move format is `{ from: [fromRow, fromCol], to: [toRow, toCol] }`.
+8. **(3 points)** Clicking a highlighted destination square should submit the correct move to the server. The move format is `{ from: [fromRow, fromCol], to: [toRow, toCol] }`.
 9. After submitting a move, the selection should be cleared.
 10. If the game is over, all squares should have `cursor: default` and clicking anywhere should not send a move.
 11. If the game is over, a message should be shown indicating who won (e.g., "Red wins!" or "Black wins!" for watchers, "You won!" or "You lost!" for the player).
 12. Clicking on a piece that belongs to the opponent, or on a non-highlighted dark square, should deselect the current selection (if any).
-13. Kings are introduced in Task 5. You do not need to handle `"RK"` or `"BK"` entries in this task.
+
+> **Note:** Kings are introduced in Task 5. You do not need to handle `"RK"` or `"BK"` entries in this task.
 
 Your implementation does not need to match any particular visual style. It must be possible for a TA to effectively test each condition of satisfaction.
 
