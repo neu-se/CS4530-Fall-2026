@@ -113,7 +113,6 @@ ip3:
   page: 
 tp0:
   name: Project Overview
-  type: deadline
   page: /assignments/project-overview
 tp1:
   name: Project Formation
