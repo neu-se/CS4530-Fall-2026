@@ -63,7 +63,7 @@ The project will provide hands-on experience to complement the skills taught in 
   - Visual Studio Code (or similar IDE)
   - Git
   - Vitest
-  - Postman
+  - Playwright
 
 Select projects from Spring 2026 are hosted [in our project showcase](https://neu-se.github.io/CS4530-Spring-2026/assignments/project-showcase).
 
