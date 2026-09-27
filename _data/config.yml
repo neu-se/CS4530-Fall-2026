@@ -1,38 +1,35 @@
 deadlines:
   '3':
     Wed:
-      date: 2026/09/23 5:00pm EST
+      date: 2026/09/23 5:00pm ET
       content: ip1
   '4':
-    Wed:
-      date: 2026/09/30 
-      content: tp0
     Fri:
-      date: 2026/10/02 5:00pm EST 
+      date: 2026/10/02 5:00pm ET 
       content: tp1
   '5':
     Wed:
-      date: 2026/10/07 5:00pm EST
+      date: 2026/10/07 5:00pm ET
       content: ip2
   '6':
     Fri:
-      date: 2026/10/16 5:00pm EST
+      date: 2026/10/16 5:00pm ET
       content: tp2
   '7':
     Wed:
-      date: 2026/10/21 5:00pm EST
+      date: 2026/10/21 5:00pm ET
       content: ip3
   '8':
     Fri:
-      date: 2026/10/30 5:00pm EST
+      date: 2026/10/30 5:00pm ET
       content: tp3
   '13':
     Fri:
-      date: 2026/12/04 5:00pm EST
+      date: 2026/12/04 5:00pm ET
       content: tp4
   '15':
     Mon:
-      date: 2026/12/14 5:00pm EST
+      date: 2026/12/14 5:00pm ET
       content: tp5
 dates:
   firstMonday: 2026/09/07
@@ -42,3 +39,5 @@ types:
     className: lesson
   holiday:
     className: holiday
+  announce:
+    className: announce

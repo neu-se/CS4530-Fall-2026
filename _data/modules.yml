@@ -113,6 +113,7 @@ ip3:
   page: 
 tp0:
   name: Project Overview
+  type: announce
   page: /assignments/project-overview
 tp1:
   name: Project Formation
