@@ -106,7 +106,7 @@ ip1:
 ip2:
   name: Individual Project 2 
   type: deadline
-  page: 
+  page: /assignments/ip2
 ip3:
   name: Individual Project 3
   type: deadline
