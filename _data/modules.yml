@@ -27,7 +27,7 @@ mod6:
   page: /modules/6-patterns-of-react
 mod7:
   name: Software Processes & Agile
-  page: 
+  page: /modules/7-software-process
 mod8:
   name: Concurrency Patterns
   page: 
