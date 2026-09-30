@@ -30,7 +30,7 @@ mod7:
   page: /modules/7-software-process
 mod8:
   name: Concurrency Patterns
-  page: 
+  page: /modules/8-concurrency-patterns-in-typescript
 mod9:
   name: Writing Maintainable Code
   page: 
