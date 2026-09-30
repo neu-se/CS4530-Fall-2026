@@ -10,7 +10,7 @@ nav_order: 5
 
 All projects will involve frontend and backend development of new features for our GameNite project.
 Once teams have been formed, you and your team will decide what kind of new features you would like to build.
-Your features should be something that can be implemented within the timeframe allotted (5 weeks, plus 2 week of planning), and will be implemented in a fork of the main codebase.
+Your features should be something that can be implemented within the timeframe allotted (5 weeks, plus 2 weeks of planning), and will be implemented in a fork of the main codebase.
 In the coming weeks, we will provide tutorials and instructions for you to run the entire application in a local development environment, and also to deploy it to the cloud.
 Given that you will be up-to-speed on the GameNite codebase (and have been introduced to TypeScript, React, NodeJS, and testing frameworks like Vitest and Playwright),
 and that you will have a team of four, we expect that the features that you propose will be more complex than the features implemented in the individual assignments.
@@ -81,6 +81,11 @@ We suggest that you should have no less than 10-12 conditions of satisfaction (p
 Your user stories and conditions of satisfaction should be laid out in a **table** for easy reference. 
 
 Use the INVEST+E criteria to evaluate your user stories.
+
+**For section 12 (online section) only**: Each team should prepare a slide deck as follows:
+* A title slide showing the overall title of the project and the names of the team members
+* Another slide showing the user stories and their priority (mvp/backlog)
+* For each of the user stories, one slide's worth of essential COSs.
 
 ### Roles
 
