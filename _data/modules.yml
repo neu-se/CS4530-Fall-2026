@@ -110,7 +110,7 @@ ip2:
 ip3:
   name: Individual Project 3
   type: deadline
-  page: 
+  page: /assignments/ip3
 tp0:
   name: Project Overview
   type: announce
