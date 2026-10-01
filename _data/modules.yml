@@ -33,7 +33,7 @@ mod8:
   page: /modules/8-concurrency-patterns-in-typescript
 mod9:
   name: Writing Maintainable Code
-  page: 
+  page: /modules/9-code-level-design
 mod10:
   name: Tests with Larger Scope
   page: 
