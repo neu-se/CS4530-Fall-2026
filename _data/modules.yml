@@ -39,13 +39,13 @@ mod10:
   page: /modules/10-larger-tests
 mod11:
   name: Interaction & Application Level Patterns
-  page: 
+  page: /modules/11-patterns
 mod11a:
   name: Interaction Level Patterns
-  page: 
+  page: /modules/11-patterns
 mod11b:
   name: Application Level Patterns
-  page: 
+  page: /modules/11-patterns
 mod12:
   name: Continuous Development
   page: 
