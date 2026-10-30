@@ -33,12 +33,12 @@ Your group is formed on the project assignment's page in Pawtograder. **Exactly 
 
 1. Open the project assignment in Pawtograder and click **Create a new group**.
 2. Name the group using your group number in the format `XYY`, where X is your section number and YY is your group number (e.g., `101` for section 1, group 01). Double-check the number: course staff use this name to identify your team.
-3. Optionally, invite your teammates to the group directly from the **Create a new group** dialog. They will receive an email and a Pawtograder notification. You can also invite them later by clicking **Invite other students** on the assignment page.
 
-**Every other student joins that group,** in one of two ways:
+**Every other student requests to join that group:**
 
-- **Accept an invitation:** If your teammate invited you, click **Join a group** on the assignment page. Your invitations are listed first; click **Accept**. You are added to the group immediately.
-- **Request to join:** If you were not invited, click **Join a group**, find your team's group (your group number, e.g., `101`) under **Select a group to request to join**, and click **Request to Join Group**. Any current member of the group can then approve your request under **Approve or decline join requests** in the group details. Only request to join _your own_ team's group.
+1. Open the project assignment in Pawtograder and click **Join a group**.
+2. Find your team's group (your group number, e.g., `101`) under **Select a group to request to join**, and click **Request to Join Group**. Only request to join _your own_ team's group.
+3. Any current member of the group can then approve your request under **Approve or decline join requests** in the group details.
 
 Once you are in the group, the assignment page will read "You are in group XYY" and list all of its members. Check that every member of your team appears in this list.
 
