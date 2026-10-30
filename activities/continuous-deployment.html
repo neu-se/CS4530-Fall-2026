@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <link rel="stylesheet" href="/CS4530-Fall-2026/assets/css/just-the-docs-default.css">
+
+  <link rel="stylesheet" href="/CS4530-Fall-2026/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+
+  <style id="jtd-nav-activation">
+  
+    .site-nav ul li a {
+      background-image: none;
+    }
+
+  </style>
+
+  
+
+  
+    <script src="/CS4530-Fall-2026/assets/js/vendor/lunr.min.js"></script>
+  
+
+  <script src="/CS4530-Fall-2026/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+
+
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Continuous Deployment Pipeline for GameNite | CS4530, Fall 2026</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Continuous Deployment Pipeline for GameNite" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Northeastern University CS 4530 “Fundamentals of Software Engineering”, Fall 2026. Professors Adeel Bhutta and Mitch Wand." />
+<meta property="og:description" content="Northeastern University CS 4530 “Fundamentals of Software Engineering”, Fall 2026. Professors Adeel Bhutta and Mitch Wand." />
+<link rel="canonical" href="https://neu-se.github.io/CS4530-Fall-2026/activities/continuous-deployment" />
+<meta property="og:url" content="https://neu-se.github.io/CS4530-Fall-2026/activities/continuous-deployment" />
+<meta property="og:site_name" content="CS4530, Fall 2026" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Continuous Deployment Pipeline for GameNite" />
+<script type="application/ld+json">
+{"description":"Northeastern University CS 4530 “Fundamentals of Software Engineering”, Fall 2026. Professors Adeel Bhutta and Mitch Wand.","headline":"Continuous Deployment Pipeline for GameNite","url":"https://neu-se.github.io/CS4530-Fall-2026/activities/continuous-deployment","@type":"WebPage","dateModified":"2026-10-30T02:21:41+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+</head>
+
+<body>
+  <a class="skip-to-main" href="#main-content">Skip to main content</a>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="svg-link" viewBox="0 0 24 24">
+  <title>Link</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+  </svg>
+</symbol>
+
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+  <title>Menu</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+    <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</symbol>
+
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+  <title>Expand</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+</symbol>
+
+  <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE -->
+<symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+  <title id="svg-external-link-title">(external link)</title>
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+</symbol>
+
+  
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+  <title>Document</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+  </svg>
+</symbol>
+
+    <symbol id="svg-search" viewBox="0 0 24 24">
+  <title>Search</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</symbol>
+
+  
+  
+    <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md -->
+<symbol id="svg-copy" viewBox="0 0 16 16">
+  <title>Copy</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg>
+</symbol>
+<symbol id="svg-copied" viewBox="0 0 16 16">
+  <title>Copied</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/>
+  </svg>
+</symbol>
+
+  
+</svg>
+
+  
+    <header class="side-bar">
+  <div class="site-header">
+    <a href="/CS4530-Fall-2026/" class="site-title lh-tight">
+  CS4530, Fall 2026
+
+</a>
+    <button id="menu-button" class="site-button btn-reset" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
+    </button>
+  </div>
+
+  <nav aria-label="Main" id="site-nav" class="site-nav">
+  
+  
+    <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Calendar submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/calendar/" class="nav-list-link">Calendar</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s1" class="nav-list-link">Section 1 - Calendar</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s2" class="nav-list-link">Section 2 - Calendar</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s5" class="nav-list-link">Section 5 - Calendar</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/calendar/s12" class="nav-list-link">Section 12 - Calendar</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Modules submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/modules/" class="nav-list-link">Modules</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/1-user-stories" class="nav-list-link">1 - Orientation & User Stories</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/2-requirements-to-tests" class="nav-list-link">2 - From Requirements to Tests</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/3-test-adequacy" class="nav-list-link">3 - Test Adequacy</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/4-web-apps" class="nav-list-link">4 - Design Patterns for Web Applications</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/5-react" class="nav-list-link">5 - React</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/6-patterns-of-react" class="nav-list-link">6 - React Hooks</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/7-software-process" class="nav-list-link">7 - Software Process</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/8-concurrency-patterns-in-typescript" class="nav-list-link">8 - Concurrency Patterns in Typescript</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/9-code-level-design" class="nav-list-link">9 - Code-Level Design Principles</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/10-larger-tests" class="nav-list-link">10 - Tests With Larger Scope</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/11-patterns" class="nav-list-link">11 - Interaction & Application Level Patterns</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/12-continuous-development" class="nav-list-link">12 - Continuous Development</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/modules/13-security" class="nav-list-link">13 - Security</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Assignments submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/assignments/" class="nav-list-link">Assignments</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/ip1" class="nav-list-link">Individual Project 1</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/ip2" class="nav-list-link">Individual Project 2</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/ip3" class="nav-list-link">Individual Project 3</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/project-overview" class="nav-list-link">Project Overview</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/project-plan" class="nav-list-link">Preliminary Project Plan</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/revised-project-plan" class="nav-list-link">Revised Project Plan</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/project-deliverable" class="nav-list-link">Project Final Deliverable</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Final Project Grading submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/assignments/project-grading" class="nav-list-link">Final Project Grading</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/sec-125-demos" class="nav-list-link">Demos for Sections 1, 2, & 5</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/assignments/sec-12-demos" class="nav-list-link">Demos for Section 12</a></li></ul></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Tutorials submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/tutorials/" class="nav-list-link">Tutorials</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-getting-started" class="nav-list-link">Installing a Development Environment</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-typescript-basics" class="nav-list-link">TypeScript Basics</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-unit-testing" class="nav-list-link">Unit Testing with Vitest</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week1-apirequests" class="nav-list-link">Guide to API Requests</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week2-keyv" class="nav-list-link">Simple Storage with Keyv</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week2-socketio-basics" class="nav-list-link">Socket.IO Tutorial</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week3-react-basics" class="nav-list-link">React Tutorial</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/tutorials/week3-uitesting" class="nav-list-link">UI Testing with Playwright</a></li></ul></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/textbooks/" class="nav-list-link">Textbooks</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/staff/" class="nav-list-link">Staff</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="Policies submenu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/CS4530-Fall-2026/policies/" class="nav-list-link">Policies</a><ul class="nav-list"><li class="nav-list-item"><a href="/CS4530-Fall-2026/policies/ai" class="nav-list-link">Policy on Use of AI</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/policies/style/" class="nav-list-link">Code Style</a></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/policies/debugging/" class="nav-list-link">Debugging</a></li></ul></li><li class="nav-list-item"><a href="/CS4530-Fall-2026/resources/" class="nav-list-link">Other Resources</a></li></ul>
+  
+</nav>
+
+
+<div class="d-md-block d-none site-footer">
+  
+  
+    This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+  
+  </div>
+</header>
+
+  
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+  
+    
+
+<div class="search" role="search">
+  <div class="search-input-wrap">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search CS4530, Fall 2026" autocomplete="off">
+    <label for="search-input" class="search-label">
+      <span class="sr-only">Search CS4530, Fall 2026</span>
+      <svg viewBox="0 0 24 24" class="search-icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg>
+    </label>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+  
+  
+  
+</div>
+
+    <div class="main-content-wrap">
+      
+      <div id="main-content" class="main-content">
+        <main>
+          
+            <div class="fs-1 text-right fw-300">Last updated: Oct 30, 26 02:21 UTC | <a href="/CS4530-Fall-2026/activities/continuous-deployment">Permalink</a></div>
+<h1 id="continuous-deployment-pipeline-for-gamenite">
+  
+  
+    <a href="#continuous-deployment-pipeline-for-gamenite" class="anchor-heading" aria-labelledby="continuous-deployment-pipeline-for-gamenite"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Continuous Deployment Pipeline for GameNite
+  
+  
+</h1>
+    
+
+<p>In this activity, you will set up a continuous deployment pipeline using MongoDB Atlas and Render.com. The application will be deployed through Render.com, while the MongoDB database will be hosted in the cloud using MongoDB Atlas.</p>
+
+<p>Only one member of each team needs to complete these steps, as the resulting deployment will be shared with the entire team. However, if preferred, the team can work together to deploy the application.</p>
+
+<p class="note">In this activity, we will focus on building a continuous deployment pipeline, but what about continuous integration? There are many ways to use continuous integration in your projects. For example, you can use GitHub Actions to automatically run tests after pushing a commit. GameNite has a continuous integration setup for running tests, and you can find the workflow in <code class="language-plaintext highlighter-rouge">.github/workflows/main.yml</code>.</p>
+<h2 id="changelog">
+  
+  
+    <a href="#changelog" class="anchor-heading" aria-labelledby="changelog"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Changelog
+  
+  
+</h2>
+    
+<p>NA</p>
+<h2 id="pre-requisites">
+  
+  
+    <a href="#pre-requisites" class="anchor-heading" aria-labelledby="pre-requisites"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Pre-Requisites
+  
+  
+</h2>
+    
+
+<p>There are three pre-requisites for this activity.</p>
+<h3 id="github-repository-via-pawtograder">
+  
+  
+    <a href="#github-repository-via-pawtograder" class="anchor-heading" aria-labelledby="github-repository-via-pawtograder"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> GitHub Repository (via Pawtograder)
+  
+  
+</h3>
+    
+
+<p>Your team’s deployment must take place within your team’s private project repository, which is created and managed by <a href="https://docs.pawtograder.com">Pawtograder</a>. You do not create this repository yourself on GitHub: Pawtograder creates one repository per project group inside the course GitHub organization and gives every member of the group access to it.</p>
+<h3 id="forming-your-project-group">
+  
+  
+    <a href="#forming-your-project-group" class="anchor-heading" aria-labelledby="forming-your-project-group"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Forming your project group
+  
+  
+</h3>
+    
+
+<p>Your group is formed on the project assignment’s page in Pawtograder. <strong>Exactly one member of your team creates the group, and every other member joins that group.</strong> Please coordinate with your team before you start so that only one group is created; if two teammates each create a group, one of them will need to leave their group and join the other.</p>
+
+<p><strong>One student creates the group:</strong></p>
+
+<ol>
+  <li>Open the project assignment in Pawtograder and click <strong>Create a new group</strong>.</li>
+  <li>Name the group using your group number in the format <code class="language-plaintext highlighter-rouge">XYY</code>, where X is your section number and YY is your group number (e.g., <code class="language-plaintext highlighter-rouge">101</code> for section 1, group 01). Double-check the number: course staff use this name to identify your team.</li>
+</ol>
+
+<p><strong>Every other student requests to join that group:</strong></p>
+
+<ol>
+  <li>Open the project assignment in Pawtograder and click <strong>Join a group</strong>.</li>
+  <li>Find your team’s group (your group number, e.g., <code class="language-plaintext highlighter-rouge">101</code>) under <strong>Select a group to request to join</strong>, and click <strong>Request to Join Group</strong>. Only request to join <em>your own</em> team’s group.</li>
+  <li>Any current member of the group can then approve your request under <strong>Approve or decline join requests</strong> in the group details.</li>
+</ol>
+
+<p>Once you are in the group, the assignment page will read “You are in group XYY” and list all of its members. Check that every member of your team appears in this list.</p>
+
+<p class="warning">Pay attention to the group formation deadline shown in Pawtograder. After it passes, you will not be able to create, join, approve requests for, or leave a group. If you need to change groups after the deadline, contact the course staff.</p>
+<h4 id="accessing-your-groups-repository">
+  
+  
+    <a href="#accessing-your-groups-repository" class="anchor-heading" aria-labelledby="accessing-your-groups-repository"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Accessing your group’s repository
+  
+  
+</h4>
+    
+
+<p>When all members have joined the group, Pawtograder gives <strong>each member collaborator access</strong> to the group’s project repository on GitHub, which contains the GameNite codebase. You can find the link to the repository on the project assignment’s page in Pawtograder, or on Pawtograder’s <strong>GitHub Help</strong> page (in the <strong>Support &amp; Documentation</strong> menu in the top-right corner), which lists every repository your GitHub account should be able to open.</p>
+
+<p>If you cannot see or open the repository, make sure you are signed in to GitHub with the same account that is linked to Pawtograder. If the repository is still missing, click <strong>Sync GitHub Account</strong> on Pawtograder’s <a href="https://docs.pawtograder.com/students/github-help">GitHub Help</a> page (this can be done once per day), and contact the course staff if that does not resolve it.</p>
+
+<p>This repository will be private, and visible only to your team and the course staff.</p>
+<h3 id="mongodb-account">
+  
+  
+    <a href="#mongodb-account" class="anchor-heading" aria-labelledby="mongodb-account"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> MongoDB Account
+  
+  
+</h3>
+    
+
+<p>MongoDB Atlas is a cloud-based service that provides fully managed MongoDB databases. It allows you to easily deploy, manage, and scale MongoDB clusters without needing to handle server infrastructure, security, backups, or updates, making database management simpler and more efficient.</p>
+
+<p>To use MongoDB Atlas, create a MongoDB account <a href="https://account.mongodb.com/account/register">here</a>.</p>
+
+<p>After you register you will be asked to verify your email. The steps on how to create a MongoDB database and configure are provided below.</p>
+<h3 id="rendercom-account">
+  
+  
+    <a href="#rendercom-account" class="anchor-heading" aria-labelledby="rendercom-account"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Render.com Account
+  
+  
+</h3>
+    
+
+<p>Render.com is a cloud platform that simplifies deploying and hosting web applications, APIs, and databases. It automatically manages servers, scaling, and security, allowing developers to easily build, deploy, and run applications without worrying about infrastructure management.</p>
+
+<p>You can create a Render.com account <a href="https://dashboard.render.com/register">here</a>. Click on the “GitHub” button and sign up using the <strong>same GitHub account that is linked to your Pawtograder account</strong> (the account that has collaborator access to your group’s project repository).</p>
+
+<p>After you register you will be asked to verify your email. You might be asked to authorize the Render app for the “neu-cs4530” organization - choose your group’s project repository using the “Only select repositories” option, DO NOT choose “All repositories”.</p>
+<h2 id="steps">
+  
+  
+    <a href="#steps" class="anchor-heading" aria-labelledby="steps"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Steps
+  
+  
+</h2>
+    
+
+<p>You will first create the MongoDB database, and then setup the continuous deployment pipeline for the server and the client.</p>
+<h3 id="setup-your-mongodb-database">
+  
+  
+    <a href="#setup-your-mongodb-database" class="anchor-heading" aria-labelledby="setup-your-mongodb-database"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Setup your MongoDB Database
+  
+  
+</h3>
+    
+
+<ol>
+  <li>Navigate to your <a href="https://cloud.mongodb.com">MongoDB Cloud Overview</a>.</li>
+  <li>Click on the “Project Overview” button.</li>
+  <li>Click on the “Create” button on the center of the screen. (If you don’t see a “Create” button, make sure you are in the “Project Overview” section on the left navigation)</li>
+  <li>In the configuration options:
+    <ol>
+      <li>Choose the “Free” tier.</li>
+      <li>For the Name, provide a name such as “db-cs4530-fa26-XYY” (where XYY is your group number).</li>
+      <li>Keep the Provider and Region the default values.</li>
+    </ol>
+  </li>
+  <li>Click on “Create Deployment”.</li>
+  <li>You will be prompted about connecting to your database.
+    <ol>
+      <li><strong>Copy and save the username and password that is automatically generated, as it is shown only once and cannot be retrieved later.</strong> You’ll use this username and password in a later step. (If necessary, you can create new users after the database has been created.)</li>
+      <li>Click on “Create Database User”.</li>
+      <li>Click the “Close” button.</li>
+    </ol>
+  </li>
+  <li>Wait for your database cluster to complete creation. Once complete, click on the “Database &amp; Network Access” option in the left navigation (you may have to expand the “Security” section to see this), and then click on “IP Access List” under “Network Access”</li>
+  <li>Your current public IP address will be automatically present. Click the “EDIT” button, and then click “ALLOW ACCESS FROM ANYWHERE”. (If you don’t see this button, you can paste <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> as a new Access List Entry.) Click the “Confirm” button.</li>
+  <li>Click on the “Clusters” option in the left navigation. Then, click on the “Connect” button.
+    <ol>
+      <li>Click on “Compass”.</li>
+      <li>Note the “connection string” — you will need to use your connection string in a later step. Make sure to replace <code class="language-plaintext highlighter-rouge">&lt;db_password&gt;</code> with the actual database password from step 6.</li>
+    </ol>
+  </li>
+</ol>
+
+<p class="note">For simplicity, and since you’re not handling sensitive data, the Network Access is set to allow connections from anywhere. However, for projects involving sensitive data, you should restrict access to only the necessary range of IP addresses.</p>
+
+<p>You can optionally connect your locally deployed server to the cloud-hosted MongoDB database, which can be useful when developing a feature and testing it before deployment. To do this, update the <code class="language-plaintext highlighter-rouge">.env</code> created as <a href="https://neu-se.github.io/CS4530-Fall-2026/assignments/ip2#12-setting-up-the-server-to-use-mongodb">part of the IP2 setup</a>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MONGO_STR=&lt;add your connection string here&gt;
+MONGO_DB_NAME=GameNiteDev
+</code></pre></div></div>
+
+<p>If you get an error about an “unsettled top-level await”, it means the connection string is not working. Make sure you’ve included your actual database password.</p>
+
+<p>Starting the server will populate the database; at this point you should be able to “Browse Collections” on the MongoDB website, visit the GameNiteDev database, and see the collections <code class="language-plaintext highlighter-rouge">auth</code>, <code class="language-plaintext highlighter-rouge">chat</code>, <code class="language-plaintext highlighter-rouge">game</code>, etc.</p>
+
+<p>Note: The .env file is not required for the Render.com setup. The above instructions are only if you want to connect the cloud MongoDB to your local (laptop) server.</p>
+<h3 id="setup-your-server">
+  
+  
+    <a href="#setup-your-server" class="anchor-heading" aria-labelledby="setup-your-server"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Setup your Server
+  
+  
+</h3>
+    
+
+<ol>
+  <li>Open the <a href="https://dashboard.render.com/">Render Dashboard</a>.</li>
+  <li>Click on “Create new project”, and create a new project with a name such as “cs4530-fa26-XYY” (where XYY is your group number).</li>
+  <li>From the top menu, click on the “+ New” button and click on “Web Service”.
+    <ol>
+      <li>For the Source Code, choose your group’s project repository (the one Pawtograder gave you access to). In case you do not see your project repository, go to your GitHub account and authorize Render’s access to your project repository.</li>
+      <li>For the Name, you can EITHER choose a unique name OR use the default.</li>
+      <li>For the Project, select the project created earlier. For the environment, select Production or any default value.</li>
+      <li>For Language, select “Node”.</li>
+      <li>For Branch, select “main”.</li>
+      <li>For Region, keep the default value.</li>
+      <li>For Root Directory, leave it empty.</li>
+      <li>For Build Command, type in <code class="language-plaintext highlighter-rouge">npm install; npm run build</code>.</li>
+      <li>For Start Command, type in <code class="language-plaintext highlighter-rouge">npm start</code>.</li>
+      <li>For Instance Type, choose the “Free” option.</li>
+      <li>In the Environment Variables section, add three variables:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">NODE_VERSION</code> should be <code class="language-plaintext highlighter-rouge">24.13.1</code></li>
+          <li><code class="language-plaintext highlighter-rouge">MONGO_STR</code> should be the connection string from the previous step</li>
+          <li><code class="language-plaintext highlighter-rouge">MONGO_DB_NAME</code> should be <code class="language-plaintext highlighter-rouge">GameNiteProd</code>.</li>
+        </ul>
+      </li>
+      <li>If you need to change any of these, you can do so from the tab called “Settings” (or “Environment”)</li>
+    </ol>
+  </li>
+  <li>Click “Deploy Web Service”.</li>
+  <li>The URL of your site will be displayed in purple just below near the top of the window in the “Logs” section.</li>
+  <li>When the logs indicate a successful deployment, you can visit the link to see your deployed site.</li>
+  <li>You can check the server’s logs by going to the “Logs” section: the logs are the place to check if your server is not responsive.</li>
+</ol>
+
+<p class="note">Any servers running with the same <code class="language-plaintext highlighter-rouge">MONGO_STR</code> and <code class="language-plaintext highlighter-rouge">MONGO_DB_NAME</code> will share the same database. If you have multiple group members working on a similar feature, you may want to use the same database, or even the production database <code class="language-plaintext highlighter-rouge">GameNiteProd</code>. You can also pick a new <code class="language-plaintext highlighter-rouge">MONGO_DB_NAME</code> if you want to easily reset your application to the initial setup.</p>
+
+<p>Note: If your GitHub Actions checks hang during <code class="language-plaintext highlighter-rouge">Install Playwright Dependencies</code>, update Playwright from <code class="language-plaintext highlighter-rouge">1.58.1</code> to <code class="language-plaintext highlighter-rouge">1.60.0</code> in <code class="language-plaintext highlighter-rouge">client/package.json</code> and rerun the workflow.</p>
+<h2 id="grading">
+  
+  
+    <a href="#grading" class="anchor-heading" aria-labelledby="grading"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Grading
+  
+  
+</h2>
+    
+
+<p>Once your app is deployed, please show your deployment to your Mentor TA during your next meeting: you should show making a change through the deployed web interface, like updating a display name, and then show how that change has been recorded in the MongoDB database.</p>
+
+          
+
+          
+            
+          
+        </main>
+        
+<hr>
+<footer>
+  
+
+  <p class="text-small mb-0">&copy; 2026 Adeel Bhutta and Mitch Wand. Released under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license</p>
+
+  <div class="d-md-none mt-4 fs-2">
+    
+    
+      This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    
+  </div>
+</footer>
+
+      </div>
+    </div>
+    
+      
+
+<div class="search-overlay"></div>
+
+    
+  </div>
+
+  
+</body>
+</html>
+
