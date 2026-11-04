@@ -60,7 +60,7 @@ mod15:
   page: 
 ai:
   name: Coding with AI  
-  page: 
+  page: /modules/16a-ai
 advanced:
   name: Advanced Topics in SE
 opensource:
