@@ -54,7 +54,7 @@ mod13:
   page: /modules/13-security
 mod14:
   name: Principles for Cloud Deployment
-  page: 
+  page: /modules/14-cloud-infrastructure
 mod15:
   name: Ethics and Equity in SE
   page: 
